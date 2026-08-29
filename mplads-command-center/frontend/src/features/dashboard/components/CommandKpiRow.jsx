@@ -46,15 +46,15 @@ export const CommandKpiRow = ({ kpis, fundPosition }) => {
       path: '/projects'
     },
     {
-      id: 'completed',
-      title: 'Projects Completed',
-      value: kpis.projectsCompleted,
-      subtitle: 'Assets dedicated to public',
-      icon: CheckCircle2,
-      color: 'text-emerald-700',
-      bgColor: 'bg-emerald-50 border-emerald-100',
-      badge: 'Verified Works',
-      badgeColor: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
+      id: 'atRisk',
+      title: 'Projects At Risk / Delayed',
+      value: `${kpis.projectsAtRisk + (kpis.projectsDelayed || 0)}`,
+      subtitle: `${kpis.projectsDelayed || 2} delayed • ${kpis.projectsAtRisk || 1} at risk`,
+      icon: AlertTriangle,
+      color: 'text-rose-700',
+      bgColor: 'bg-rose-50 border-rose-100',
+      badge: 'Needs Review',
+      badgeColor: 'bg-rose-50 text-rose-700 border border-rose-200',
       path: '/projects'
     },
     {
@@ -70,15 +70,15 @@ export const CommandKpiRow = ({ kpis, fundPosition }) => {
       path: '/projects'
     },
     {
-      id: 'atRisk',
-      title: 'Projects At Risk / Delayed',
-      value: `${kpis.projectsAtRisk + (kpis.projectsDelayed || 0)}`,
-      subtitle: `${kpis.projectsDelayed || 2} delayed • ${kpis.projectsAtRisk || 1} at risk`,
-      icon: AlertTriangle,
-      color: 'text-rose-700',
-      bgColor: 'bg-rose-50 border-rose-100',
-      badge: 'Needs Review',
-      badgeColor: 'bg-rose-50 text-rose-700 border border-rose-200',
+      id: 'completed',
+      title: 'Projects Completed',
+      value: kpis.projectsCompleted,
+      subtitle: 'Assets dedicated to public',
+      icon: CheckCircle2,
+      color: 'text-emerald-700',
+      bgColor: 'bg-emerald-50 border-emerald-100',
+      badge: 'Verified Works',
+      badgeColor: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
       path: '/projects'
     }
   ];

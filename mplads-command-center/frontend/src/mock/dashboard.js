@@ -49,11 +49,11 @@ export const getMockDashboardData = (mpId = "MP001", financialYear = "2026-27") 
       {
         id: "ALT002",
         severity: "warning", // amber/orange
-        title: "₹24L Pending Utilization",
-        issue: "Released funds have not yet been utilized",
+        title: "Payment Not Utilized",
+        issue: "₹24L released funds have not yet been utilized",
         actionLabel: "View Funds",
         targetPath: "/finance",
-        category: "Payment Mismatch",
+        category: "Payment Not Utilized",
         area: "Haveli Block"
       },
       {

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card } from '../../../components/common/Card';
-import { Badge } from '../../../components/common/Badge';
-import { MapPin, ArrowUpRight, Layers, Navigation, Info, CheckCircle2, AlertTriangle } from 'lucide-react';
+import { MapPin, ArrowUpRight, Navigation } from 'lucide-react';
 
 export const ConstituencyMapSnapshot = ({ constituencyMap, constituencyName = 'Pune' }) => {
   const navigate = useNavigate();
@@ -39,26 +38,26 @@ export const ConstituencyMapSnapshot = ({ constituencyMap, constituencyName = 'P
         </button>
       }
     >
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div className="flex flex-col sm:flex-row gap-4">
         {/* Interactive Simulated Topographical GIS Map Canvas */}
-        <div className="lg:col-span-2 bg-slate-100 rounded-2xl border border-slate-200 relative h-72 sm:h-80 overflow-hidden shadow-inner p-4 flex flex-col justify-between bg-[radial-gradient(#cbd5e1_1.2px,transparent_1.2px)] [background-size:20px_20px]">
+        <div className="flex-1 bg-slate-100 rounded-2xl border border-slate-200 relative min-h-[300px] h-72 sm:h-auto overflow-hidden shadow-inner p-3.5 flex flex-col justify-between bg-[radial-gradient(#cbd5e1_1.2px,transparent_1.2px)] [background-size:20px_20px]">
           {/* Top GIS telemetry tags */}
-          <div className="flex items-center justify-between z-10">
-            <div className="bg-white/95 backdrop-blur-xs border border-slate-200 px-3 py-1 rounded-lg text-xs font-bold text-slate-800 shadow-xs flex items-center gap-1.5">
-              <Navigation className="w-3.5 h-3.5 text-indigo-600" />
-              <span>{constituencyName} Parliamentary Constituency GIS Layer</span>
+          <div className="flex items-center justify-between z-10 gap-2">
+            <div className="bg-white/95 backdrop-blur-xs border border-slate-200 px-2.5 py-1 rounded-lg text-xs font-bold text-slate-800 shadow-xs flex items-center gap-1.5 truncate">
+              <Navigation className="w-3.5 h-3.5 text-indigo-600 shrink-0" />
+              <span className="truncate">{constituencyName} GIS Layer</span>
             </div>
 
-            <div className="bg-white/95 backdrop-blur-xs border border-slate-200 px-2.5 py-1 rounded-lg text-[11px] font-semibold text-slate-600 shadow-xs">
-              Live Geo-Tagged Assets
+            <div className="bg-white/95 backdrop-blur-xs border border-slate-200 px-2.5 py-1 rounded-lg text-[11px] font-semibold text-slate-600 shadow-xs shrink-0">
+              Live Assets
             </div>
           </div>
 
           {/* Area boundary watermarks */}
-          <div className="absolute inset-0 pointer-events-none flex items-center justify-around opacity-35 font-display font-extrabold text-slate-400 text-xs tracking-widest uppercase">
-            <span>Mulshi / Kothrud</span>
-            <span>Kasba Peth</span>
-            <span>Parvati / Haveli</span>
+          <div className="absolute inset-0 pointer-events-none flex items-center justify-around opacity-30 font-display font-extrabold text-slate-400 text-[11px] tracking-widest uppercase">
+            <span>Mulshi</span>
+            <span>Kasba</span>
+            <span>Haveli</span>
           </div>
 
           {/* Geo Markers */}
@@ -83,7 +82,7 @@ export const ConstituencyMapSnapshot = ({ constituencyMap, constituencyName = 'P
                     <MapPin className="w-3.5 h-3.5" />
                   </div>
                   {isSelected && (
-                    <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-lg whitespace-nowrap">
+                    <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-lg whitespace-nowrap z-30">
                       {pin.name}
                     </span>
                   )}
@@ -93,24 +92,23 @@ export const ConstituencyMapSnapshot = ({ constituencyMap, constituencyName = 'P
           </div>
 
           {/* Bottom Marker Legend */}
-          <div className="bg-white/95 backdrop-blur-xs border border-slate-200 p-2 rounded-xl text-[11px] font-bold text-slate-700 shadow-xs flex items-center justify-between flex-wrap gap-2 z-10">
-            <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-emerald-500" /> Completed</span>
-            <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-indigo-600" /> Ongoing</span>
-            <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-amber-500" /> At Risk</span>
-            <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-rose-500" /> Delayed</span>
-            <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-slate-400" /> Proposed</span>
+          <div className="bg-white/95 backdrop-blur-xs border border-slate-200 p-2 rounded-xl text-[10px] sm:text-[11px] font-bold text-slate-700 shadow-xs flex items-center justify-between flex-wrap gap-1.5 z-10">
+            <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-500" /> Completed</span>
+            <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-indigo-600" /> Ongoing</span>
+            <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-amber-500" /> At Risk</span>
+            <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-rose-500" /> Delayed</span>
           </div>
         </div>
 
         {/* Selected Project Quick Inspector Dossier */}
-        <div className="bg-slate-50 border border-slate-200/90 rounded-2xl p-4 flex flex-col justify-between">
+        <div className="w-full sm:w-64 bg-slate-50 border border-slate-200/90 rounded-2xl p-4 flex flex-col justify-between shrink-0 overflow-hidden">
           <div>
-            <div className="flex items-center justify-between gap-2 mb-2 pb-2 border-b border-slate-200/80">
-              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+            <div className="flex items-center justify-between gap-2 mb-3 pb-2 border-b border-slate-200/80">
+              <span className="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider">
                 Asset Quick Inspector
               </span>
               {selectedPin && (
-                <span className="text-xs font-bold text-slate-700 bg-white border border-slate-200 px-2 py-0.5 rounded">
+                <span className="text-[11px] font-bold text-slate-700 bg-white border border-slate-200 px-2 py-0.5 rounded truncate max-w-[110px]" title={selectedPin.area}>
                   {selectedPin.area}
                 </span>
               )}
@@ -118,18 +116,19 @@ export const ConstituencyMapSnapshot = ({ constituencyMap, constituencyName = 'P
 
             {selectedPin ? (
               <div className="space-y-3">
-                <h4 className="text-base font-bold text-slate-900 leading-snug">
+                <h4 className="text-sm font-bold text-slate-900 leading-snug break-words">
                   {selectedPin.name}
                 </h4>
 
+                {/* Metrics */}
                 <div className="grid grid-cols-2 gap-2 text-xs">
-                  <div className="p-2 bg-white rounded-lg border border-slate-200/80">
-                    <span className="text-slate-400 block text-[10px] font-bold uppercase">Agency</span>
-                    <span className="font-bold text-slate-800">{selectedPin.agency}</span>
+                  <div className="p-2.5 bg-white rounded-xl border border-slate-200/90 shadow-xs">
+                    <span className="text-slate-500 block text-[10px] font-bold uppercase tracking-wider">Agency</span>
+                    <span className="font-extrabold text-slate-900 truncate block mt-0.5">{selectedPin.agency}</span>
                   </div>
-                  <div className="p-2 bg-white rounded-lg border border-slate-200/80">
-                    <span className="text-slate-400 block text-[10px] font-bold uppercase">Sanctioned</span>
-                    <span className="font-bold text-slate-800">{selectedPin.amount}</span>
+                  <div className="p-2.5 bg-white rounded-xl border border-slate-200/90 shadow-xs">
+                    <span className="text-slate-500 block text-[10px] font-bold uppercase tracking-wider">Sanctioned</span>
+                    <span className="font-extrabold text-slate-900 truncate block mt-0.5">{selectedPin.amount}</span>
                   </div>
                 </div>
 
@@ -140,15 +139,15 @@ export const ConstituencyMapSnapshot = ({ constituencyMap, constituencyName = 'P
                   </div>
                   <div className="w-full h-2 bg-white border border-slate-200 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-indigo-600 rounded-full"
+                      className="h-full bg-indigo-600 rounded-full transition-all duration-300"
                       style={{ width: `${selectedPin.progress}%` }}
                     />
                   </div>
                 </div>
 
-                <div className="p-2.5 rounded-lg bg-indigo-50/70 border border-indigo-100 text-xs text-indigo-900 flex items-center justify-between">
-                  <span>Ground Status:</span>
-                  <strong className="font-bold">{selectedPin.status}</strong>
+                <div className="p-2.5 rounded-xl bg-indigo-50/70 border border-indigo-100 text-xs text-indigo-900 flex items-center justify-between">
+                  <span className="font-semibold text-slate-600">Ground Status:</span>
+                  <strong className="font-extrabold text-indigo-900">{selectedPin.status}</strong>
                 </div>
               </div>
             ) : (
@@ -160,10 +159,10 @@ export const ConstituencyMapSnapshot = ({ constituencyMap, constituencyName = 'P
 
           <button
             onClick={() => navigate('/projects')}
-            className="w-full mt-3 py-2 bg-white hover:bg-slate-100 text-indigo-700 text-xs font-bold rounded-xl border border-slate-300 transition shadow-xs flex items-center justify-center gap-1.5 cursor-pointer"
+            className="w-full mt-3 py-2 px-2 bg-white hover:bg-slate-100 text-indigo-700 text-xs font-bold rounded-xl border border-slate-300 transition shadow-xs flex items-center justify-center gap-1 cursor-pointer truncate"
           >
-            <span>Inspect Project Ground Dossier</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
+            <span className="truncate">Inspect Project Dossier</span>
+            <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />
           </button>
         </div>
       </div>

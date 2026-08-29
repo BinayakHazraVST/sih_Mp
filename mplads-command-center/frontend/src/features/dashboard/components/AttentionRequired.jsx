@@ -16,11 +16,11 @@ export const AttentionRequired = ({ alerts = [] }) => {
       container: 'hover:border-rose-300 hover:bg-rose-50/30'
     },
     warning: {
-      dot: 'bg-amber-500 ring-4 ring-amber-100',
-      badge: 'bg-amber-50 text-amber-800 border-amber-200',
+      dot: 'bg-rose-400 ring-4 ring-rose-100',
+      badge: 'bg-rose-50 text-rose-800 border-rose-200',
       icon: AlertTriangle,
-      iconColor: 'text-amber-600',
-      container: 'hover:border-amber-300 hover:bg-amber-50/30'
+      iconColor: 'text-rose-600',
+      container: 'hover:border-rose-300 hover:bg-rose-50/30'
     },
     info: {
       dot: 'bg-indigo-500 ring-4 ring-indigo-100',
@@ -32,17 +32,17 @@ export const AttentionRequired = ({ alerts = [] }) => {
   };
 
   return (
-    <div className="bg-white border-2 border-amber-300/80 rounded-2xl p-5 shadow-xs transition duration-200">
+    <div className="bg-white border-2 border-rose-400 rounded-2xl p-5 shadow-xs transition duration-200">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3 mb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-rose-100 pb-3 mb-4">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-700">
+          <div className="w-8 h-8 rounded-lg bg-rose-50 border border-rose-200 flex items-center justify-center text-rose-600">
             <ShieldAlert className="w-4 h-4" />
           </div>
           <div>
             <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
               <span>Attention Required</span>
-              <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">
+              <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-rose-100 text-rose-800">
                 {alerts.length} items require your attention
               </span>
             </h3>
@@ -53,7 +53,7 @@ export const AttentionRequired = ({ alerts = [] }) => {
         </div>
         <button
           onClick={() => navigate('/projects')}
-          className="text-xs font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1 self-start sm:self-auto cursor-pointer"
+          className="text-xs font-bold text-rose-600 hover:text-rose-800 flex items-center gap-1 self-start sm:self-auto cursor-pointer"
         >
           <span>View All Issues</span>
           <ArrowRight className="w-3.5 h-3.5" />
@@ -94,7 +94,7 @@ export const AttentionRequired = ({ alerts = [] }) => {
                 </p>
               </div>
 
-              <div className="pt-3 mt-3 border-t border-slate-200/60 flex items-center justify-between text-xs font-bold text-indigo-600 group">
+              <div className="pt-3 mt-3 border-t border-slate-200/60 flex items-center justify-between text-xs font-bold text-rose-600 group">
                 <span>{item.actionLabel}</span>
                 <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
               </div>

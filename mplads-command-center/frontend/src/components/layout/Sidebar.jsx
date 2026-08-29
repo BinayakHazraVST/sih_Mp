@@ -47,21 +47,27 @@ export const Sidebar = ({ isCollapsed = false, onToggle }) => {
   return (
     <aside
       className={`sticky top-0 h-screen bg-white border-r border-slate-200 flex flex-col shrink-0 z-40 overflow-hidden transition-all duration-300 ease-in-out ${
-        isCollapsed ? 'w-20' : 'w-64'
+        isCollapsed ? 'w-16' : 'w-56'
       }`}
     >
       {/* Brand Logo Header with Toggle Button */}
-      <div className={`h-16 border-b border-slate-200 shrink-0 bg-white flex items-center justify-between transition-all ${
-        isCollapsed ? 'px-3 justify-center' : 'px-4'
-      }`}>
-        <div className="flex items-center gap-3 overflow-hidden">
-          <AshokStambhLogo className="w-10 h-10 shrink-0" theme="light" />
+      <div
+        className={`h-16 border-b border-slate-200 shrink-0 bg-white flex items-center justify-between transition-all cursor-pointer group/logo hover:bg-slate-50 select-none ${
+          isCollapsed ? 'px-2 justify-center' : 'px-3.5'
+        }`}
+        onClick={onToggle}
+        title={isCollapsed ? "Click to expand sidebar" : "Click to collapse sidebar"}
+      >
+        <div className="flex items-center gap-2.5 overflow-hidden">
+          <div className="transition-transform group-hover/logo:scale-105 shrink-0">
+            <AshokStambhLogo className="w-9 h-9 shrink-0" theme="light" />
+          </div>
           {!isCollapsed && (
             <div className="min-w-0 transition-opacity duration-200">
-              <h1 className="font-display font-extrabold text-slate-900 text-base tracking-tight leading-none truncate">
+              <h1 className="font-display font-extrabold text-slate-900 text-sm tracking-tight leading-none truncate group-hover/logo:text-indigo-600 transition-colors">
                 MPLADS AI
               </h1>
-              <span className="text-xs font-semibold text-slate-500 block mt-1 leading-tight truncate">
+              <span className="text-[11px] font-semibold text-slate-500 block mt-1 leading-tight truncate">
                 Monitoring Platform
               </span>
             </div>
@@ -70,9 +76,12 @@ export const Sidebar = ({ isCollapsed = false, onToggle }) => {
 
         {/* Sidebar Collapse/Expand Toggle Button */}
         <button
-          onClick={onToggle}
-          title={isCollapsed ? "Expand Sidebar (Ctrl+B)" : "Collapse Sidebar (Ctrl+B)"}
-          className={`p-1.5 rounded-lg text-slate-400 hover:text-indigo-600 hover:bg-slate-100 transition cursor-pointer shrink-0 ${
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggle();
+          }}
+          title={isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+          className={`p-1 rounded-lg text-slate-400 hover:text-indigo-600 hover:bg-slate-200/60 transition cursor-pointer shrink-0 ${
             isCollapsed ? 'hidden' : 'block'
           }`}
         >
@@ -81,15 +90,15 @@ export const Sidebar = ({ isCollapsed = false, onToggle }) => {
       </div>
 
       {/* Navigation Groups */}
-      <nav className="flex-1 px-3 py-4 space-y-4 overflow-y-auto overflow-x-hidden">
+      <nav className="flex-1 px-2.5 py-3.5 space-y-3.5 overflow-y-auto overflow-x-hidden">
         {navGroups.map((group, gIdx) => (
-          <div key={gIdx} className="space-y-1">
+          <div key={gIdx} className="space-y-0.5">
             {!isCollapsed ? (
-              <div className="px-3 pb-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider transition-opacity">
+              <div className="px-2.5 pb-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider transition-opacity">
                 {group.title}
               </div>
             ) : (
-              gIdx > 0 && <div className="my-2 border-t border-slate-100" />
+              gIdx > 0 && <div className="my-1.5 border-t border-slate-100" />
             )}
 
             {group.items.map((item) => {
@@ -100,10 +109,10 @@ export const Sidebar = ({ isCollapsed = false, onToggle }) => {
                   to={item.path}
                   title={isCollapsed ? item.label : undefined}
                   className={({ isActive }) =>
-                    `flex items-center gap-3 rounded-xl transition-all ${
+                    `flex items-center gap-2.5 rounded-xl transition-all ${
                       isCollapsed
-                        ? 'justify-center px-0 py-2.5 w-12 mx-auto'
-                        : 'px-3 py-2 text-xs font-semibold'
+                        ? 'justify-center px-0 py-2.5 w-10 mx-auto'
+                        : 'px-2.5 py-2 text-xs font-semibold'
                     } ${
                       isActive
                         ? 'bg-indigo-50 text-indigo-700 font-bold border border-indigo-100 shadow-xs'
@@ -122,32 +131,32 @@ export const Sidebar = ({ isCollapsed = false, onToggle }) => {
 
       {/* Footer Status Banner / Toggle Pill */}
       {isCollapsed ? (
-        <div className="shrink-0 p-3 border-t border-slate-100 flex flex-col items-center gap-2">
+        <div className="shrink-0 p-2.5 border-t border-slate-100 flex flex-col items-center gap-2">
           <button
             onClick={onToggle}
             title="Expand Sidebar"
-            className="p-2 rounded-xl text-slate-400 hover:text-indigo-600 hover:bg-slate-100 transition cursor-pointer"
+            className="p-1.5 rounded-xl text-slate-400 hover:text-indigo-600 hover:bg-slate-100 transition cursor-pointer"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
           <div
             title="Portal Status: MP Active"
-            className="w-8 h-8 rounded-lg bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-600 cursor-help"
+            className="w-7 h-7 rounded-lg bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-600 cursor-help"
           >
-            <ShieldAlert className="w-4 h-4" />
+            <ShieldAlert className="w-3.5 h-3.5" />
           </div>
         </div>
       ) : (
-        <div className="shrink-0 p-3 m-3 bg-slate-50 border border-slate-200 rounded-xl transition-all">
-          <div className="flex items-center justify-between gap-2 text-xs font-bold text-slate-700 mb-1">
-            <span className="flex items-center gap-1.5">
-              <ShieldAlert className="w-3.5 h-3.5 text-amber-600" />
+        <div className="shrink-0 p-2.5 m-2.5 bg-slate-50 border border-slate-200 rounded-xl transition-all">
+          <div className="flex items-center justify-between gap-2 text-[11px] font-bold text-slate-700 mb-0.5">
+            <span className="flex items-center gap-1">
+              <ShieldAlert className="w-3 h-3 text-amber-600" />
               <span>Portal Status</span>
             </span>
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           </div>
-          <p className="text-[11px] text-slate-500 leading-snug">
-            MP Portal Active. Nodal Officer verification layer ready.
+          <p className="text-[10px] text-slate-500 leading-snug">
+            MP Portal Active. Verification layer ready.
           </p>
         </div>
       )}

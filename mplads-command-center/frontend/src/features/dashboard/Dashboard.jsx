@@ -11,7 +11,6 @@ import { AgencyPerformance } from './components/AgencyPerformance';
 import { IntegrityRiskSignals } from './components/IntegrityRiskSignals';
 import { Loader } from '../../components/common/Loader';
 import { ErrorState } from '../../components/common/ErrorState';
-import { Clock, RefreshCw } from 'lucide-react';
 
 export const Dashboard = () => {
   const { currentMP } = useAuth();
@@ -45,30 +44,15 @@ export const Dashboard = () => {
 
   return (
     <div className="space-y-6">
-      {/* 3. PAGE TITLE & DATA FRESHNESS INDICATOR */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-4 border-b border-slate-200">
+      {/* PAGE HEADING */}
+      <div className="flex items-center justify-between pb-2 border-b border-slate-200">
         <div>
           <h1 className="text-2xl font-extrabold font-display text-slate-900 tracking-tight">
-            {data.mp.name} — Command Dashboard
+            Dashboard
           </h1>
-          <p className="text-xs font-semibold text-slate-500 mt-1">
-            Constituency: <span className="text-slate-800 font-bold">{data.mp.constituency}, {data.mp.state}</span> | Financial Year: <span className="text-indigo-700 font-bold">{financialYear}</span>
+          <p className="text-xs font-semibold text-slate-500 mt-0.5">
+            Parliamentary Constituency Telemetry & Financial Overview
           </p>
-        </div>
-
-        <div className="flex items-center gap-3 self-start md:self-auto">
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs font-medium text-slate-500 shadow-xs">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse" />
-            <span>Last updated: {data.lastUpdated}</span>
-          </div>
-
-          <button
-            onClick={loadDashboard}
-            title="Refresh Telemetry"
-            className="p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-white rounded-lg border border-transparent hover:border-slate-200 transition cursor-pointer"
-          >
-            <RefreshCw className="w-4 h-4" />
-          </button>
         </div>
       </div>
 

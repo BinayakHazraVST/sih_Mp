@@ -2,30 +2,16 @@ import React from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import { useUser } from '../../hooks/useUser';
 import { FINANCIAL_YEARS } from '../../constants/financialYears';
-import { Calendar, User, LogOut, ChevronDown, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
+import { Calendar, User, LogOut, ChevronDown } from 'lucide-react';
 
-export const Navbar = ({ onToggleSidebar, isSidebarCollapsed }) => {
+export const Navbar = () => {
   const { currentMP, availableMPs, switchMP, logout } = useAuth();
   const { financialYear, setFinancialYear } = useUser();
 
   return (
     <header className="h-16 bg-white/95 backdrop-blur-md border-b border-slate-200 px-6 flex items-center justify-between sticky top-0 z-30 shadow-xs">
-      {/* Sidebar Toggle & Active MP Indicator */}
+      {/* Active MP Indicator */}
       <div className="flex items-center gap-3">
-        {onToggleSidebar && (
-          <button
-            onClick={onToggleSidebar}
-            title={isSidebarCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
-            className="p-2 -ml-2 rounded-xl text-slate-500 hover:text-indigo-600 hover:bg-slate-100 transition cursor-pointer"
-          >
-            {isSidebarCollapsed ? (
-              <PanelLeftOpen className="w-5 h-5" />
-            ) : (
-              <PanelLeftClose className="w-5 h-5" />
-            )}
-          </button>
-        )}
-
         <div className="w-9 h-9 rounded-full bg-slate-100 border border-slate-200 overflow-hidden flex items-center justify-center shrink-0">
           {currentMP?.avatar ? (
             <img src={currentMP.avatar} alt={currentMP.name} className="w-full h-full object-cover" />
