@@ -2,17 +2,31 @@ import React from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import { useUser } from '../../hooks/useUser';
 import { FINANCIAL_YEARS } from '../../constants/financialYears';
-import { Calendar, User, LogOut, ChevronDown } from 'lucide-react';
+import { Calendar, User, LogOut, ChevronDown, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
 
-export const Navbar = () => {
+export const Navbar = ({ onToggleSidebar, isSidebarCollapsed }) => {
   const { currentMP, availableMPs, switchMP, logout } = useAuth();
   const { financialYear, setFinancialYear } = useUser();
 
   return (
     <header className="h-16 bg-white/95 backdrop-blur-md border-b border-slate-200 px-6 flex items-center justify-between sticky top-0 z-30 shadow-xs">
-      {/* Active MP Indicator */}
+      {/* Sidebar Toggle & Active MP Indicator */}
       <div className="flex items-center gap-3">
-        <div className="w-9 h-9 rounded-full bg-slate-100 border border-slate-200 overflow-hidden flex items-center justify-center">
+        {onToggleSidebar && (
+          <button
+            onClick={onToggleSidebar}
+            title={isSidebarCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+            className="p-2 -ml-2 rounded-xl text-slate-500 hover:text-indigo-600 hover:bg-slate-100 transition cursor-pointer"
+          >
+            {isSidebarCollapsed ? (
+              <PanelLeftOpen className="w-5 h-5" />
+            ) : (
+              <PanelLeftClose className="w-5 h-5" />
+            )}
+          </button>
+        )}
+
+        <div className="w-9 h-9 rounded-full bg-slate-100 border border-slate-200 overflow-hidden flex items-center justify-center shrink-0">
           {currentMP?.avatar ? (
             <img src={currentMP.avatar} alt={currentMP.name} className="w-full h-full object-cover" />
           ) : (
@@ -51,21 +65,24 @@ export const Navbar = () => {
           </select>
         </div>
 
-        {/* Demo MP Switcher Dropdown */}
-        <div className="flex items-center gap-2 bg-indigo-50/70 border border-indigo-200 rounded-lg px-3 py-1.5 shadow-xs">
-          <span className="text-xs font-semibold text-indigo-800">Switch MP:</span>
+        {/* Demo MP Switcher Dropdown (Admin/Demo Capability) */}
+        <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 shadow-xs">
+          <span className="text-[10px] font-bold text-amber-700 bg-amber-100/80 px-1.5 py-0.5 rounded uppercase tracking-wider">
+            Demo MP
+          </span>
           <select
             value={currentMP?.id || 'MP001'}
             onChange={(e) => switchMP(e.target.value)}
-            className="bg-transparent text-xs font-bold text-indigo-900 focus:outline-none cursor-pointer"
+            className="bg-transparent text-xs font-bold text-slate-800 focus:outline-none cursor-pointer"
+            title="Demo / Testing Profile Switcher"
           >
             {availableMPs.map((mp) => (
               <option key={mp.id} value={mp.id} className="bg-white text-slate-900">
-                {mp.name} ({mp.constituency})
+                {mp.name} ({mp.constituency}, {mp.state})
               </option>
             ))}
           </select>
-          <ChevronDown className="w-3.5 h-3.5 text-indigo-600 pointer-events-none" />
+          <ChevronDown className="w-3.5 h-3.5 text-slate-400 pointer-events-none" />
         </div>
 
         {/* Logout Action */}

@@ -10,10 +10,8 @@ import { ProjectDetails } from '../features/projects/ProjectDetails';
 import { ProjectCreate } from '../features/projects/ProjectCreate';
 import { FinancialOverview } from '../features/finance/FinancialOverview';
 import { ConstituencyMap } from '../features/geography/ConstituencyMap';
-import { Planning } from '../features/planning/Planning';
 import { Contractors } from '../features/contractors/Contractors';
 import { ContractorDetails } from '../features/contractors/ContractorDetails';
-import { Beneficiaries } from '../features/beneficiaries/Beneficiaries';
 import { Reports } from '../features/reports/Reports';
 
 const ProtectedRoute = ({ children }) => {
@@ -55,17 +53,11 @@ export const AppRoutes = () => {
         <Route path={ROUTES.GEOGRAPHY} element={<ConstituencyMap />} />
         <Route path={ROUTES.DEVELOPMENT_GAPS} element={<ConstituencyMap />} />
 
-        {/* Planning */}
-        <Route path={ROUTES.PLANNING} element={<Planning />} />
-        <Route path={ROUTES.PROPOSALS} element={<Planning />} />
-        <Route path={ROUTES.PRIORITY_ANALYSIS} element={<Planning />} />
-
         {/* Contractors */}
         <Route path={ROUTES.CONTRACTORS} element={<Contractors />} />
         <Route path={ROUTES.CONTRACTOR_DETAILS} element={<ContractorDetails />} />
 
-        {/* Beneficiaries & Reports */}
-        <Route path={ROUTES.BENEFICIARIES} element={<Beneficiaries />} />
+        {/* Reports */}
         <Route path={ROUTES.REPORTS} element={<Reports />} />
       </Route>
 
