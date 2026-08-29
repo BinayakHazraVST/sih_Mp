@@ -6,14 +6,14 @@ export const ProjectStatusChart = ({ statusCounts = { completed: 0, ongoing: 0, 
 
   const items = [
     { label: 'Completed', count: statusCounts.completed || 0, color: 'bg-emerald-500', badge: 'emerald' },
-    { label: 'Ongoing', count: statusCounts.ongoing || 0, color: 'bg-indigo-500', badge: 'indigo' },
+    { label: 'Ongoing', count: statusCounts.ongoing || 0, color: 'bg-indigo-600', badge: 'indigo' },
     { label: 'Not Started', count: statusCounts.notStarted || 0, color: 'bg-amber-500', badge: 'amber' }
   ];
 
   return (
     <div className="space-y-4">
       {/* Visual Bar Segment */}
-      <div className="h-4 w-full bg-slate-700/50 rounded-full flex overflow-hidden p-0.5 gap-0.5">
+      <div className="h-4 w-full bg-slate-100 border border-slate-200 rounded-full flex overflow-hidden p-0.5 gap-0.5">
         {items.map((item, idx) => {
           const widthPct = (item.count / total) * 100;
           if (widthPct === 0) return null;
@@ -31,9 +31,9 @@ export const ProjectStatusChart = ({ statusCounts = { completed: 0, ongoing: 0, 
       {/* Legend Grid */}
       <div className="grid grid-cols-3 gap-2">
         {items.map((item, idx) => (
-          <div key={idx} className="bg-slate-900/60 border border-slate-800 p-2.5 rounded-lg text-center">
+          <div key={idx} className="bg-slate-50 border border-slate-200/90 p-2.5 rounded-lg text-center">
             <Badge variant={item.badge} className="mb-1">{item.label}</Badge>
-            <div className="text-lg font-bold text-slate-100">{item.count}</div>
+            <div className="text-lg font-bold text-slate-800">{item.count}</div>
           </div>
         ))}
       </div>

@@ -11,13 +11,13 @@ export const UpcomingActivities = () => {
 
   return (
     <Card title="Upcoming Constituency Schedule">
-      <div className="space-y-3">
+      <div className="space-y-2.5">
         {activities.map((act, idx) => (
-          <div key={idx} className="flex items-start gap-3 p-2.5 rounded-lg bg-slate-900/40 border border-slate-800">
-            <Calendar className="w-4 h-4 text-indigo-400 mt-0.5 shrink-0" />
+          <div key={idx} className="flex items-start gap-3 p-3 rounded-lg bg-slate-50 border border-slate-200/90">
+            <Calendar className="w-4 h-4 text-indigo-600 mt-0.5 shrink-0" />
             <div>
-              <h5 className="text-xs font-semibold text-slate-200">{act.title}</h5>
-              <span className="text-[11px] text-slate-400">{act.date} • {act.type}</span>
+              <h5 className="text-xs font-bold text-slate-800">{act.title}</h5>
+              <span className="text-[11px] font-medium text-slate-500">{act.date} • {act.type}</span>
             </div>
           </div>
         ))}

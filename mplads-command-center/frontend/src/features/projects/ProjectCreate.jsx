@@ -69,30 +69,30 @@ export const ProjectCreate = () => {
       <Card>
         <form onSubmit={handleSubmit} className="space-y-4">
           {error && (
-            <div className="p-3 bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs rounded-lg">
+            <div className="p-3 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-lg">
               {error}
             </div>
           )}
 
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1">Project Title *</label>
+            <label className="block text-xs font-bold text-slate-700 mb-1">Project Title *</label>
             <input
               type="text"
               required
               placeholder="e.g. Primary Health Centre Solar Installation"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-indigo-500"
+              className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-indigo-600 focus:bg-white transition"
             />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Development Sector *</label>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Development Sector *</label>
               <select
                 value={formData.sector}
                 onChange={(e) => setFormData({ ...formData, sector: e.target.value })}
-                className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-indigo-500"
+                className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-indigo-600 focus:bg-white transition cursor-pointer"
               >
                 {SECTORS.map((s) => (
                   <option key={s} value={s}>{s}</option>
@@ -101,42 +101,42 @@ export const ProjectCreate = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Sanctioned Amount (INR) *</label>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Sanctioned Amount (INR) *</label>
               <input
                 type="number"
                 required
                 placeholder="e.g. 2500000"
                 value={formData.sanctionedAmount}
                 onChange={(e) => setFormData({ ...formData, sanctionedAmount: e.target.value })}
-                className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-indigo-500"
+                className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-indigo-600 focus:bg-white transition"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Gram Panchayat / Village</label>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Gram Panchayat / Village</label>
               <input
                 type="text"
                 placeholder="e.g. Haveli Block"
                 value={formData.village}
                 onChange={(e) => setFormData({ ...formData, village: e.target.value })}
-                className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-indigo-500"
+                className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-indigo-600 focus:bg-white transition"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Target Completion Date</label>
+              <label className="block text-xs font-bold text-slate-700 mb-1">Target Completion Date</label>
               <input
                 type="date"
                 value={formData.expectedCompletionDate}
                 onChange={(e) => setFormData({ ...formData, expectedCompletionDate: e.target.value })}
-                className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-indigo-500"
+                className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-900 focus:outline-none focus:border-indigo-600 focus:bg-white transition"
               />
             </div>
           </div>
 
-          <div className="pt-4 flex justify-end gap-3 border-t border-slate-800">
+          <div className="pt-4 flex justify-end gap-3 border-t border-slate-100">
             <Button variant="secondary" onClick={() => navigate('/projects')}>Cancel</Button>
             <Button type="submit" disabled={submitting} icon={Save}>
               {submitting ? 'Registering...' : 'Save & Register Work'}

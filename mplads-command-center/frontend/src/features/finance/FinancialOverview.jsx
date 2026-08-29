@@ -25,16 +25,16 @@ export const FinancialOverview = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card className="text-center p-4">
-          <span className="text-xs text-slate-400 font-medium block">Allocated Cap</span>
-          <span className="text-2xl font-bold font-display text-slate-100">{formatCurrency(fundSummary.allocation, true)}</span>
+          <span className="text-xs text-slate-500 font-semibold block">Allocated Cap</span>
+          <span className="text-2xl font-bold font-display text-slate-900">{formatCurrency(fundSummary.allocation, true)}</span>
         </Card>
         <Card className="text-center p-4">
-          <span className="text-xs text-slate-400 font-medium block">Released Amount</span>
-          <span className="text-2xl font-bold font-display text-cyan-400">{formatCurrency(fundSummary.released, true)}</span>
+          <span className="text-xs text-slate-500 font-semibold block">Released Amount</span>
+          <span className="text-2xl font-bold font-display text-sky-700">{formatCurrency(fundSummary.released, true)}</span>
         </Card>
         <Card className="text-center p-4">
-          <span className="text-xs text-slate-400 font-medium block">Utilized Amount</span>
-          <span className="text-2xl font-bold font-display text-emerald-400">{formatCurrency(fundSummary.utilized, true)}</span>
+          <span className="text-xs text-slate-500 font-semibold block">Utilized Amount</span>
+          <span className="text-2xl font-bold font-display text-emerald-700">{formatCurrency(fundSummary.utilized, true)}</span>
         </Card>
       </div>
 
