@@ -12,8 +12,8 @@ import { FinancialOverview } from '../features/finance/FinancialOverview';
 import { ConstituencyMap } from '../features/geography/ConstituencyMap';
 import { Planning } from '../features/planning/Planning';
 import { Contractors } from '../features/contractors/Contractors';
+import { ContractorDetails } from '../features/contractors/ContractorDetails';
 import { Beneficiaries } from '../features/beneficiaries/Beneficiaries';
-import { CitizenFeedback } from '../features/feedback/CitizenFeedback';
 import { Reports } from '../features/reports/Reports';
 
 const ProtectedRoute = ({ children }) => {
@@ -62,11 +62,10 @@ export const AppRoutes = () => {
 
         {/* Contractors */}
         <Route path={ROUTES.CONTRACTORS} element={<Contractors />} />
-        <Route path={ROUTES.CONTRACTOR_DETAILS} element={<Contractors />} />
+        <Route path={ROUTES.CONTRACTOR_DETAILS} element={<ContractorDetails />} />
 
-        {/* Beneficiaries, Feedback & Reports */}
+        {/* Beneficiaries & Reports */}
         <Route path={ROUTES.BENEFICIARIES} element={<Beneficiaries />} />
-        <Route path={ROUTES.FEEDBACK} element={<CitizenFeedback />} />
         <Route path={ROUTES.REPORTS} element={<Reports />} />
       </Route>
 

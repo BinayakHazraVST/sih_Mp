@@ -21,6 +21,5 @@ export const ROUTES = {
   CONTRACTOR_DETAILS: '/contractors/:id',
 
   BENEFICIARIES: '/beneficiaries',
-  FEEDBACK: '/feedback',
   REPORTS: '/reports',
 };

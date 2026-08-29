@@ -8,7 +8,6 @@ import {
   Lightbulb, 
   Building2, 
   Users, 
-  MessageSquare, 
   FileSpreadsheet,
   ShieldAlert
 } from 'lucide-react';
@@ -23,7 +22,6 @@ export const Sidebar = () => {
     { label: 'Planning & Proposals', path: ROUTES.PLANNING, icon: Lightbulb },
     { label: 'Contractors Directory', path: ROUTES.CONTRACTORS, icon: Building2 },
     { label: 'Beneficiaries Impact', path: ROUTES.BENEFICIARIES, icon: Users },
-    { label: 'Citizen Feedback', path: ROUTES.FEEDBACK, icon: MessageSquare },
     { label: 'Reports & Audits', path: ROUTES.REPORTS, icon: FileSpreadsheet },
   ];
 
