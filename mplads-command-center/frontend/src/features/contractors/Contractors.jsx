@@ -37,40 +37,40 @@ export const Contractors = () => {
           <Card key={c.id} className="space-y-4">
             <div className="flex items-start justify-between gap-3">
               <div>
-                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">{c.registrationNumber}</span>
-                <h4 className="text-base font-bold text-slate-100 mt-0.5">{c.name}</h4>
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{c.registrationNumber}</span>
+                <h4 className="text-base font-bold text-slate-900 mt-0.5">{c.name}</h4>
               </div>
               <Badge variant="emerald">{c.performanceCategory}</Badge>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 text-xs bg-slate-900/60 border border-slate-800 p-3 rounded-lg">
+            <div className="grid grid-cols-2 gap-3 text-xs bg-slate-50 border border-slate-200/90 p-3 rounded-lg">
               <div>
-                <span className="text-slate-400 block">Performance Score</span>
-                <div className="flex items-center gap-1 font-bold text-amber-400 mt-0.5">
-                  <Star className="w-3.5 h-3.5 fill-amber-400" />
+                <span className="text-slate-500 font-semibold block">Performance Score</span>
+                <div className="flex items-center gap-1 font-bold text-amber-700 mt-0.5">
+                  <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
                   <span>{c.rating} / 5.0</span>
                 </div>
               </div>
               <div>
-                <span className="text-slate-400 block">Works Completed</span>
-                <div className="flex items-center gap-1 font-bold text-slate-200 mt-0.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                <span className="text-slate-500 font-semibold block">Works Completed</span>
+                <div className="flex items-center gap-1 font-bold text-slate-800 mt-0.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                   <span>{c.projectsCompleted} Works</span>
                 </div>
               </div>
             </div>
 
-            <div className="pt-2 border-t border-slate-700/40 text-xs text-slate-400 space-y-1">
+            <div className="pt-2 border-t border-slate-100 text-xs text-slate-600 space-y-1.5">
               <div className="flex items-center gap-2">
-                <Building2 className="w-3.5 h-3.5 text-slate-500" />
-                <span>Contact: {c.contactPerson}</span>
+                <Building2 className="w-3.5 h-3.5 text-slate-400" />
+                <span>Contact: <strong className="text-slate-700">{c.contactPerson}</strong></span>
               </div>
               <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-slate-500" />
+                <Phone className="w-3.5 h-3.5 text-slate-400" />
                 <span>{c.phone}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-slate-500" />
+                <Mail className="w-3.5 h-3.5 text-slate-400" />
                 <span>{c.email}</span>
               </div>
             </div>

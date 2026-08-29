@@ -41,19 +41,19 @@ export const CitizenFeedback = () => {
           <Card key={fb.id} className="space-y-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-slate-400">
+                <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500">
                   <User className="w-4 h-4" />
                 </div>
                 <div>
-                  <h5 className="text-sm font-bold text-slate-100">{fb.citizenName}</h5>
-                  <span className="text-xs text-slate-400">Village: {fb.village} • {formatDate(fb.date)}</span>
+                  <h5 className="text-sm font-bold text-slate-900">{fb.citizenName}</h5>
+                  <span className="text-xs text-slate-500 font-medium">Village: {fb.village} • {formatDate(fb.date)}</span>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
                 <div className="flex items-center text-amber-400">
                   {[...Array(fb.rating)].map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-amber-400" />
+                    <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                   ))}
                 </div>
                 <Badge variant={fb.status === 'RESOLVED' ? 'emerald' : 'amber'}>
@@ -62,7 +62,7 @@ export const CitizenFeedback = () => {
               </div>
             </div>
 
-            <p className="text-xs text-slate-300 leading-relaxed bg-slate-900/60 p-3 rounded-lg border border-slate-800">
+            <p className="text-xs text-slate-700 leading-relaxed bg-slate-50 p-3 rounded-lg border border-slate-200/90 italic">
               "{fb.comment}"
             </p>
           </Card>

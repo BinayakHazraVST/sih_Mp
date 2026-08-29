@@ -25,17 +25,17 @@ export const Projects = () => {
         description="Monitor, track, and manage all sanctioned works and development projects."
         action={
           <div className="flex items-center gap-3">
-            <div className="flex bg-slate-900 border border-slate-800 rounded-lg p-1">
+            <div className="flex bg-slate-100 border border-slate-200 rounded-lg p-1">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-1.5 rounded ${viewMode === 'grid' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-slate-200'}`}
+                className={`p-1.5 rounded transition ${viewMode === 'grid' ? 'bg-white text-indigo-600 shadow-xs' : 'text-slate-500 hover:text-slate-800'}`}
                 title="Grid View"
               >
                 <LayoutGrid className="w-4 h-4" />
               </button>
               <button
                 onClick={() => setViewMode('table')}
-                className={`p-1.5 rounded ${viewMode === 'table' ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-slate-200'}`}
+                className={`p-1.5 rounded transition ${viewMode === 'table' ? 'bg-white text-indigo-600 shadow-xs' : 'text-slate-500 hover:text-slate-800'}`}
                 title="Table View"
               >
                 <List className="w-4 h-4" />

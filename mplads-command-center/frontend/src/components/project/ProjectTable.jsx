@@ -14,51 +14,51 @@ export const ProjectTable = ({ projects = [] }) => {
   }
 
   return (
-    <div className="overflow-x-auto rounded-xl border border-slate-800 bg-slate-900/60">
+    <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-xs">
       <table className="w-full text-left border-collapse text-sm">
         <thead>
-          <tr className="bg-slate-800/80 border-b border-slate-700/80 text-xs font-bold uppercase tracking-wider text-slate-400">
-            <th className="py-3 px-4">Project Title</th>
-            <th className="py-3 px-4">Sector</th>
-            <th className="py-3 px-4">Location</th>
-            <th className="py-3 px-4">Sanctioned</th>
-            <th className="py-3 px-4">Utilized</th>
-            <th className="py-3 px-4">Progress</th>
-            <th className="py-3 px-4">Status</th>
-            <th className="py-3 px-4 text-right">Actions</th>
+          <tr className="bg-slate-50 border-b border-slate-200 text-xs font-bold uppercase tracking-wider text-slate-500">
+            <th className="py-3.5 px-4">Project Title</th>
+            <th className="py-3.5 px-4">Sector</th>
+            <th className="py-3.5 px-4">Location</th>
+            <th className="py-3.5 px-4">Sanctioned</th>
+            <th className="py-3.5 px-4">Utilized</th>
+            <th className="py-3.5 px-4">Progress</th>
+            <th className="py-3.5 px-4">Status</th>
+            <th className="py-3.5 px-4 text-right">Actions</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-slate-800/60">
+        <tbody className="divide-y divide-slate-100">
           {projects.map((proj) => {
             const badgeVariant = PROJECT_STATUS_COLORS[proj.status] || 'slate';
             return (
-              <tr key={proj.id} className="hover:bg-slate-800/40 transition duration-150">
-                <td className="py-3 px-4 font-semibold text-slate-100 max-w-xs truncate">
+              <tr key={proj.id} className="hover:bg-slate-50/80 transition duration-150">
+                <td className="py-3.5 px-4 font-semibold text-slate-900 max-w-xs truncate">
                   {proj.name}
                 </td>
-                <td className="py-3 px-4 text-slate-300">{proj.sector}</td>
-                <td className="py-3 px-4 text-slate-400 text-xs">
+                <td className="py-3.5 px-4 text-slate-700 font-medium">{proj.sector}</td>
+                <td className="py-3.5 px-4 text-slate-500 text-xs">
                   {proj.location?.village}, {proj.location?.district}
                 </td>
-                <td className="py-3 px-4 font-medium text-slate-200">{formatCurrency(proj.sanctionedAmount, true)}</td>
-                <td className="py-3 px-4 font-medium text-emerald-400">{formatCurrency(proj.utilizedAmount, true)}</td>
-                <td className="py-3 px-4">
+                <td className="py-3.5 px-4 font-semibold text-slate-800">{formatCurrency(proj.sanctionedAmount, true)}</td>
+                <td className="py-3.5 px-4 font-semibold text-emerald-700">{formatCurrency(proj.utilizedAmount, true)}</td>
+                <td className="py-3.5 px-4">
                   <div className="flex items-center gap-2">
-                    <div className="w-16 bg-slate-700 rounded-full h-1.5 overflow-hidden">
-                      <div className="bg-indigo-500 h-full rounded-full" style={{ width: `${proj.completionPercentage}%` }} />
+                    <div className="w-16 bg-slate-100 border border-slate-200/80 rounded-full h-2 overflow-hidden">
+                      <div className="bg-indigo-600 h-full rounded-full" style={{ width: `${proj.completionPercentage}%` }} />
                     </div>
-                    <span className="text-xs font-bold text-slate-300">{proj.completionPercentage}%</span>
+                    <span className="text-xs font-bold text-slate-700">{proj.completionPercentage}%</span>
                   </div>
                 </td>
-                <td className="py-3 px-4">
+                <td className="py-3.5 px-4">
                   <Badge variant={badgeVariant}>
                     {PROJECT_STATUS_LABELS[proj.status] || proj.status}
                   </Badge>
                 </td>
-                <td className="py-3 px-4 text-right">
+                <td className="py-3.5 px-4 text-right">
                   <button
                     onClick={() => navigate(`/projects/${proj.id}`)}
-                    className="p-1.5 text-slate-400 hover:text-indigo-400 hover:bg-slate-800 rounded-lg transition"
+                    className="p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition"
                     title="View Details"
                   >
                     <Eye className="w-4 h-4" />

@@ -39,14 +39,14 @@ export const Reports = () => {
 
       <div className="space-y-4">
         {reports.map((rep) => (
-          <Card key={rep.id} className="flex items-center justify-between gap-4 p-4">
+          <Card key={rep.id} className="flex items-center justify-between gap-4 p-4 hover:border-slate-300 transition duration-200">
             <div className="flex items-center gap-3">
-              <div className="p-3 rounded-xl bg-indigo-500/10 text-indigo-400">
+              <div className="p-3 rounded-xl bg-indigo-50 border border-indigo-100 text-indigo-700">
                 <FileText className="w-6 h-6" />
               </div>
               <div>
-                <h4 className="text-sm font-bold text-slate-100">{rep.title}</h4>
-                <span className="text-xs text-slate-400">Category: {rep.category} • Format: {rep.format}</span>
+                <h4 className="text-sm font-bold text-slate-900">{rep.title}</h4>
+                <span className="text-xs text-slate-500 font-medium">Category: {rep.category} • Format: {rep.format}</span>
               </div>
             </div>
 
