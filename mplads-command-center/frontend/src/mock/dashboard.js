@@ -65,16 +65,6 @@ export const getMockDashboardData = (mpId = "MP001", financialYear = "2026-27") 
         targetPath: "/contractors",
         category: "Verification Required",
         area: "Pune Cantonment"
-      },
-      {
-        id: "ALT004",
-        severity: "info",
-        title: "Quality Test Verification Due",
-        issue: "2 third-party audit reports pending verification",
-        actionLabel: "Review Compliance",
-        targetPath: "/reports",
-        category: "Anomaly",
-        area: "Shirur Block"
       }
     ],
 
@@ -255,7 +245,7 @@ export const getMockDashboardData = (mpId = "MP001", financialYear = "2026-27") 
     // Section 13: Agency Performance
     agencyPerformance: [
       { name: "PWD", fullName: "Public Works Department", projects: 5, onTrack: 4, delayed: 1, utilization: "91%", status: "Good", alert: null },
-      { name: "PMC", fullName: "Pune Municipal Corporation", projects: 4, onTrack: 2, delayed: 2, utilization: "68%", status: "Needs Attention", alert: "⚠ PMC — 2 delayed projects" },
+      { name: "PMC", fullName: "Pune Municipal Corporation", projects: 4, onTrack: 2, delayed: 2, utilization: "68%", status: "Needs Attention", alert: "PMC — 2 delayed projects" },
       { name: "Education Dept.", fullName: "District Education Directorate", projects: 3, onTrack: 3, delayed: 0, utilization: "95%", status: "Excellent", alert: null }
     ],
 
@@ -321,24 +311,6 @@ export const getMockDashboardData = (mpId = "MP001", financialYear = "2026-27") 
         unit: "agency",
         description: "Vendor flagged for concurrent project delay across 2 wards",
         investigatePath: "/contractors"
-      },
-      {
-        id: "SIG004",
-        level: "notice", // yellow
-        title: "Document Verification Pending",
-        count: 4,
-        unit: "projects",
-        description: "Stage measurement books (MB) awaiting nodal engineer seal",
-        investigatePath: "/reports"
-      },
-      {
-        id: "SIG005",
-        level: "notice", // yellow
-        title: "Citizen Complaints Unresolved",
-        count: 7,
-        unit: "grievances",
-        description: "Pending verification past the 15-day service delivery SLA",
-        investigatePath: "/feedback"
       }
     ],
 

@@ -126,7 +126,7 @@ export const ProjectDocumentsSection = ({ documents = [] }) => {
                     alert(`Downloading ${previewDoc.name}...`);
                     setPreviewDoc(null);
                   }}
-                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer"
+                  className="px-4 py-2 bg-slate-900 hover:bg-black text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer shadow-xs"
                 >
                   <Download className="w-4 h-4" />
                   <span>Download Document</span>

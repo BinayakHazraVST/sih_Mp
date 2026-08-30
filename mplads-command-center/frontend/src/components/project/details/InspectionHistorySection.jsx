@@ -12,7 +12,7 @@ export const InspectionHistorySection = ({ inspections = [] }) => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600">
-              <ClipboardCheck className="w-4 h-4" />
+              <ClipboardCheck className="w-4 h-4 text-indigo-600" />
             </div>
             <div>
               <h3 className="text-sm font-extrabold text-slate-900">Inspection & Field Verification History</h3>
@@ -36,11 +36,7 @@ export const InspectionHistorySection = ({ inspections = [] }) => {
               return (
                 <div
                   key={insp.id}
-                  className={`p-4 rounded-xl border space-y-2 transition ${
-                    isPassed
-                      ? 'bg-white border-slate-200/90 hover:border-emerald-200'
-                      : 'bg-rose-50/40 border-rose-200'
-                  }`}
+                  className="p-4 rounded-xl border border-slate-200 bg-white space-y-2 transition hover:border-slate-300"
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div className="flex items-center gap-2">
@@ -51,10 +47,10 @@ export const InspectionHistorySection = ({ inspections = [] }) => {
                       </div>
                       <div>
                         <h4 className="text-xs font-bold text-slate-900 leading-snug">
-                          {insp.type}
+                           {insp.type}
                         </h4>
                         <span className="text-[11px] text-slate-500 font-medium flex items-center gap-1">
-                          <UserCheck className="w-3 h-3 text-slate-400" />
+                          <UserCheck className="w-3 h-3 text-sky-600" />
                           {insp.inspector} {insp.designation && `(${insp.designation})`}
                         </span>
                       </div>

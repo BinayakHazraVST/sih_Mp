@@ -14,7 +14,7 @@ export const PhysicalFinancialAlignment = ({ physical = 0, financial = 0 }) => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600">
-              <ArrowRightLeft className="w-4 h-4" />
+              <ArrowRightLeft className="w-4 h-4 text-indigo-600" />
             </div>
             <div>
               <h3 className="text-sm font-extrabold text-slate-900">Physical vs Financial Progress Alignment</h3>
@@ -33,11 +33,11 @@ export const PhysicalFinancialAlignment = ({ physical = 0, financial = 0 }) => {
           <div className="p-3.5 bg-slate-50 border border-slate-200/80 rounded-xl space-y-2">
             <div className="flex items-center justify-between text-xs font-bold">
               <span className="text-slate-700">Physical Completion</span>
-              <span className="text-indigo-700 text-sm font-black">{physical}%</span>
+              <span className="text-slate-900 text-sm font-black">{physical}%</span>
             </div>
             <div className="w-full h-2.5 bg-slate-200/70 rounded-full overflow-hidden">
               <div
-                className="h-full bg-indigo-600 rounded-full transition-all duration-500"
+                className="h-full bg-slate-900 rounded-full transition-all duration-500"
                 style={{ width: `${physical}%` }}
               />
             </div>
@@ -50,11 +50,11 @@ export const PhysicalFinancialAlignment = ({ physical = 0, financial = 0 }) => {
           <div className="p-3.5 bg-slate-50 border border-slate-200/80 rounded-xl space-y-2">
             <div className="flex items-center justify-between text-xs font-bold">
               <span className="text-slate-700">Financial Utilization</span>
-              <span className="text-emerald-700 text-sm font-black">{financial}%</span>
+              <span className="text-slate-900 text-sm font-black">{financial}%</span>
             </div>
             <div className="w-full h-2.5 bg-slate-200/70 rounded-full overflow-hidden">
               <div
-                className="h-full bg-emerald-600 rounded-full transition-all duration-500"
+                className="h-full bg-slate-900 rounded-full transition-all duration-500"
                 style={{ width: `${Math.min(financial, 100)}%` }}
               />
             </div>

@@ -10,25 +10,13 @@ export const IntegrityRiskSignals = ({ signals = [] }) => {
 
   const levelStyles = {
     critical: {
-      border: 'border-rose-200 bg-rose-50/40 hover:border-rose-300',
-      badge: 'bg-rose-100 text-rose-800 border-rose-200',
-      iconColor: 'text-rose-600',
-      btnText: 'text-rose-700 hover:text-rose-900',
-      dot: 'bg-rose-500'
+      dot: 'bg-rose-500',
     },
     warning: {
-      border: 'border-amber-200 bg-amber-50/40 hover:border-amber-300',
-      badge: 'bg-amber-100 text-amber-800 border-amber-200',
-      iconColor: 'text-amber-600',
-      btnText: 'text-amber-700 hover:text-amber-900',
-      dot: 'bg-amber-500'
+      dot: 'bg-amber-500',
     },
     notice: {
-      border: 'border-slate-200 bg-slate-50/60 hover:border-slate-300',
-      badge: 'bg-slate-100 text-slate-700 border-slate-200',
-      iconColor: 'text-indigo-600',
-      btnText: 'text-indigo-700 hover:text-indigo-900',
-      dot: 'bg-indigo-500'
+      dot: 'bg-indigo-500',
     }
   };
 
@@ -39,12 +27,12 @@ export const IntegrityRiskSignals = ({ signals = [] }) => {
       action={
         <div className="flex items-center gap-2">
           <span className="text-[11px] font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">
-            5 Signals Active
+            {signals.length} Signals Active
           </span>
         </div>
       }
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3.5">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {signals.map((sig) => {
           const cfg = levelStyles[sig.level] || levelStyles.notice;
 
@@ -52,22 +40,17 @@ export const IntegrityRiskSignals = ({ signals = [] }) => {
             <div
               key={sig.id}
               onClick={() => navigate(sig.investigatePath)}
-              className={`p-4 rounded-xl border flex flex-col justify-between cursor-pointer transition shadow-xs group ${cfg.border}`}
+              className="p-4 rounded-xl border border-slate-200/90 bg-white hover:border-slate-800 hover:bg-slate-50/80 hover:shadow-md flex flex-col justify-between cursor-pointer transition-all duration-200 group"
             >
               <div>
-                <div className="flex items-center justify-between gap-2 mb-2">
-                  <div className="flex items-center gap-1.5">
-                    <span className={`w-2 h-2 rounded-full ${cfg.dot}`} />
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
-                      Risk Signal
-                    </span>
-                  </div>
-                  <span className={`text-[10px] font-extrabold px-1.5 py-0.5 rounded border ${cfg.badge}`}>
-                    {sig.count} {sig.unit}
+                <div className="flex items-center gap-1.5 mb-2">
+                  <span className={`w-2 h-2 rounded-full ${cfg.dot}`} />
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                    Risk Signal
                   </span>
                 </div>
 
-                <h4 className="text-xs font-bold text-slate-900 leading-snug group-hover:text-indigo-950 transition">
+                <h4 className="text-xs font-bold text-slate-900 leading-snug group-hover:text-black transition">
                   {sig.title}
                 </h4>
 
@@ -76,9 +59,9 @@ export const IntegrityRiskSignals = ({ signals = [] }) => {
                 </p>
               </div>
 
-              <div className="pt-3 mt-3 border-t border-slate-200/60 flex items-center justify-between text-xs font-bold">
-                <span className={cfg.btnText}>Investigate</span>
-                <ArrowRight className={`w-3.5 h-3.5 transition-transform group-hover:translate-x-1 ${cfg.iconColor}`} />
+              <div className="pt-3 mt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-900 group-hover:text-black">
+                <span>Investigate</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
               </div>
             </div>
           );

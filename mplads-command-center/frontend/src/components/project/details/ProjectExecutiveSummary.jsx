@@ -44,10 +44,10 @@ export const ProjectExecutiveSummary = ({ project }) => {
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5">
         {/* 1. Physical Progress */}
-        <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-xs flex flex-col justify-between space-y-2 hover:border-indigo-200 transition">
-          <div className="flex items-center justify-between text-slate-400">
+        <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-xs flex flex-col justify-between space-y-2 hover:border-slate-300 transition">
+          <div className="flex items-center justify-between text-slate-500">
             <span className="text-[11px] font-bold uppercase tracking-wider">Physical Progress</span>
-            <Activity className="w-4 h-4 text-indigo-600" />
+            <Activity className="w-4 h-4 text-sky-600" />
           </div>
           <div>
             <div className="text-2xl font-black text-slate-900 leading-none">
@@ -55,7 +55,7 @@ export const ProjectExecutiveSummary = ({ project }) => {
             </div>
             <div className="w-full bg-slate-100 border border-slate-200/80 rounded-full h-1.5 mt-2 overflow-hidden">
               <div
-                className="bg-indigo-600 h-full rounded-full transition-all duration-500"
+                className="bg-slate-900 h-full rounded-full transition-all duration-500"
                 style={{ width: `${project.progress?.physical ?? 53}%` }}
               />
             </div>
@@ -66,39 +66,37 @@ export const ProjectExecutiveSummary = ({ project }) => {
         </div>
 
         {/* 2. Utilized Amount */}
-        <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-xs flex flex-col justify-between space-y-2 hover:border-emerald-200 transition">
-          <div className="flex items-center justify-between text-slate-400">
+        <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-xs flex flex-col justify-between space-y-2 hover:border-slate-300 transition">
+          <div className="flex items-center justify-between text-slate-500">
             <span className="text-[11px] font-bold uppercase tracking-wider">Utilized Amount</span>
             <Coins className="w-4 h-4 text-emerald-600" />
           </div>
           <div>
-            <div className="text-2xl font-black text-emerald-700 leading-none">
+            <div className="text-2xl font-black text-slate-900 leading-none">
               {formatCurrency(financialStats.utilized, true)}
             </div>
             <span className="text-[10px] font-bold text-slate-500 block mt-1">
               Of {formatCurrency(financialStats.sanctioned, true)} Sanctioned
             </span>
           </div>
-          <span className="text-[10px] font-semibold text-emerald-700 truncate">
+          <span className="text-[10px] font-semibold text-slate-700 truncate">
             {financialStats.utilizationOfSanctioned}% of Budget
           </span>
         </div>
 
         {/* 3. Financial Progress */}
-        <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-xs flex flex-col justify-between space-y-2 hover:border-sky-200 transition">
-          <div className="flex items-center justify-between text-slate-400">
+        <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-xs flex flex-col justify-between space-y-2 hover:border-slate-300 transition">
+          <div className="flex items-center justify-between text-slate-500">
             <span className="text-[11px] font-bold uppercase tracking-wider">Financial Progress</span>
-            <span className="text-[10px] font-bold text-sky-600 bg-sky-50 px-1.5 py-0.5 rounded">
-              Released: {formatCurrency(financialStats.released, true)}
-            </span>
+            <TrendingUp className="w-4 h-4 text-emerald-600" />
           </div>
           <div>
-            <div className="text-2xl font-black text-sky-900 leading-none">
+            <div className="text-2xl font-black text-slate-900 leading-none">
               {project.progress?.financial ?? 68}%
             </div>
             <div className="w-full bg-slate-100 border border-slate-200/80 rounded-full h-1.5 mt-2 overflow-hidden">
               <div
-                className="bg-sky-600 h-full rounded-full transition-all duration-500"
+                className="bg-slate-900 h-full rounded-full transition-all duration-500"
                 style={{ width: `${project.progress?.financial ?? 68}%` }}
               />
             </div>
@@ -109,21 +107,21 @@ export const ProjectExecutiveSummary = ({ project }) => {
         </div>
 
         {/* 4. Risk Score */}
-        <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-xs flex flex-col justify-between space-y-2 hover:border-amber-200 transition">
-          <div className="flex items-center justify-between text-slate-400">
+        <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-xs flex flex-col justify-between space-y-2 hover:border-slate-300 transition">
+          <div className="flex items-center justify-between text-slate-500">
             <span className="text-[11px] font-bold uppercase tracking-wider">Risk Score</span>
-            <ShieldAlert className={`w-4 h-4 ${riskInfo.textClass}`} />
+            <ShieldAlert className="w-4 h-4 text-rose-600" />
           </div>
           <div>
             <div className="flex items-baseline gap-1">
-              <span className={`text-2xl font-black ${riskInfo.textClass} leading-none`}>
+              <span className="text-2xl font-black text-slate-900 leading-none">
                 {riskScore}
               </span>
               <span className="text-xs font-bold text-slate-400">/ 100</span>
             </div>
             <div className="w-full bg-slate-100 border border-slate-200/80 rounded-full h-1.5 mt-2 overflow-hidden">
               <div
-                className={`h-full rounded-full transition-all duration-500 ${riskInfo.barClass}`}
+                className="h-full rounded-full transition-all duration-500 bg-slate-900"
                 style={{ width: `${riskScore}%` }}
               />
             </div>
@@ -134,10 +132,10 @@ export const ProjectExecutiveSummary = ({ project }) => {
         </div>
 
         {/* 5. Expected Completion */}
-        <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-xs flex flex-col justify-between space-y-2 hover:border-violet-200 transition">
-          <div className="flex items-center justify-between text-slate-400">
+        <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-xs flex flex-col justify-between space-y-2 hover:border-slate-300 transition">
+          <div className="flex items-center justify-between text-slate-500">
             <span className="text-[11px] font-bold uppercase tracking-wider">Target Date</span>
-            <Calendar className="w-4 h-4 text-violet-600" />
+            <Calendar className="w-4 h-4 text-indigo-600" />
           </div>
           <div>
             <div className="text-base font-black text-slate-900 leading-snug">
@@ -153,20 +151,20 @@ export const ProjectExecutiveSummary = ({ project }) => {
         </div>
 
         {/* 6. Project Health */}
-        <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-xs flex flex-col justify-between space-y-2 hover:border-rose-200 transition">
-          <div className="flex items-center justify-between text-slate-400">
+        <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-xs flex flex-col justify-between space-y-2 hover:border-slate-300 transition">
+          <div className="flex items-center justify-between text-slate-500">
             <span className="text-[11px] font-bold uppercase tracking-wider">Project Health</span>
-            <CheckCircle2 className="w-4 h-4 text-slate-400" />
+            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
           </div>
           <div>
-            <div className={`text-lg font-black leading-snug ${healthBadge.bg.includes('rose') ? 'text-rose-700' : 'text-slate-900'}`}>
+            <div className="text-lg font-black leading-snug text-slate-900">
               {healthBadge.label}
             </div>
             <span className="text-[10px] text-slate-400 font-semibold block mt-0.5">
               Status: {project.status}
             </span>
           </div>
-          <span className="text-[10px] font-bold text-indigo-700 truncate">
+          <span className="text-[10px] font-bold text-slate-700 truncate">
             Parliamentary Review Active
           </span>
         </div>

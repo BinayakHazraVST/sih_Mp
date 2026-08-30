@@ -29,7 +29,7 @@ export const FundPositionPipeline = ({ fundPosition, financialYear }) => {
       action={
         <button
           onClick={() => navigate('/finance')}
-          className="text-xs font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1 cursor-pointer"
+          className="text-xs font-bold text-black hover:text-slate-700 flex items-center gap-1 cursor-pointer"
         >
           <span>Detailed Audit</span>
           <ArrowUpRight className="w-3.5 h-3.5" />
@@ -47,33 +47,30 @@ export const FundPositionPipeline = ({ fundPosition, financialYear }) => {
               xmlns="http://www.w3.org/2000/svg"
             >
               <defs>
-                {/* Flow 1: Blue -> Cyan */}
+                {/* Flow Gradients in Monochrome Slate */}
                 <linearGradient id="flow-1" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#BFDBFE" stopOpacity="0.75" />
-                  <stop offset="100%" stopColor="#BAE6FD" stopOpacity="0.75" />
+                  <stop offset="0%" stopColor="#E2E8F0" stopOpacity="0.85" />
+                  <stop offset="100%" stopColor="#CBD5E1" stopOpacity="0.85" />
                 </linearGradient>
 
-                {/* Flow 2: Cyan -> Indigo/Purple */}
                 <linearGradient id="flow-2" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#BAE6FD" stopOpacity="0.75" />
-                  <stop offset="100%" stopColor="#DDD6FE" stopOpacity="0.75" />
+                  <stop offset="0%" stopColor="#CBD5E1" stopOpacity="0.85" />
+                  <stop offset="100%" stopColor="#E2E8F0" stopOpacity="0.85" />
                 </linearGradient>
 
-                {/* Flow 3 Top: Purple -> Rose */}
                 <linearGradient id="flow-3-top" x1="0%" y1="50%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#DDD6FE" stopOpacity="0.75" />
-                  <stop offset="100%" stopColor="#FECDD3" stopOpacity="0.85" />
+                  <stop offset="0%" stopColor="#E2E8F0" stopOpacity="0.85" />
+                  <stop offset="100%" stopColor="#F1F5F9" stopOpacity="0.9" />
                 </linearGradient>
 
-                {/* Flow 3 Bottom: Purple -> Amber */}
                 <linearGradient id="flow-3-bottom" x1="0%" y1="50%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#DDD6FE" stopOpacity="0.75" />
-                  <stop offset="100%" stopColor="#FDE68A" stopOpacity="0.85" />
+                  <stop offset="0%" stopColor="#E2E8F0" stopOpacity="0.85" />
+                  <stop offset="100%" stopColor="#F1F5F9" stopOpacity="0.9" />
                 </linearGradient>
 
                 {/* Arrow Drop Shadow */}
                 <filter id="arrow-shadow" x="-20%" y="-20%" width="140%" height="140%" filterUnits="userSpaceOnUse">
-                  <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#0F172A" floodOpacity="0.12" />
+                  <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#0F172A" floodOpacity="0.08" />
                 </filter>
               </defs>
 
@@ -111,26 +108,26 @@ export const FundPositionPipeline = ({ fundPosition, financialYear }) => {
 
               {/* Arrow 1: Centered between Card 1 & 2 (x: 275, y: 180) */}
               <g filter="url(#arrow-shadow)">
-                <circle cx="275" cy="180" r="16" fill="#FFFFFF" stroke="#F1F5F9" strokeWidth="1.5" />
-                <path d="M 270.5 180 L 279.5 180 M 275.5 175 L 280.5 180 L 275.5 185" stroke="#2563EB" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="275" cy="180" r="16" fill="#FFFFFF" stroke="#E2E8F0" strokeWidth="1.5" />
+                <path d="M 270.5 180 L 279.5 180 M 275.5 175 L 280.5 180 L 275.5 185" stroke="#0F172A" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
               </g>
 
               {/* Arrow 2: Centered between Card 2 & 3 (x: 595, y: 180) */}
               <g filter="url(#arrow-shadow)">
-                <circle cx="595" cy="180" r="16" fill="#FFFFFF" stroke="#F1F5F9" strokeWidth="1.5" />
-                <path d="M 590.5 180 L 599.5 180 M 595.5 175 L 600.5 180 L 595.5 185" stroke="#0891B2" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="595" cy="180" r="16" fill="#FFFFFF" stroke="#E2E8F0" strokeWidth="1.5" />
+                <path d="M 590.5 180 L 599.5 180 M 595.5 175 L 600.5 180 L 595.5 185" stroke="#0F172A" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
               </g>
 
               {/* Arrow 3 Top: Leading to Released Utilized (x: 890, y: 92.5) */}
               <g filter="url(#arrow-shadow)">
-                <circle cx="890" cy="92.5" r="15" fill="#FFFFFF" stroke="#F1F5F9" strokeWidth="1.5" />
-                <path d="M 886 92.5 L 894 92.5 M 890.5 88.5 L 895 92.5 L 890.5 96.5" stroke="#E11D48" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="890" cy="92.5" r="15" fill="#FFFFFF" stroke="#E2E8F0" strokeWidth="1.5" />
+                <path d="M 886 92.5 L 894 92.5 M 890.5 88.5 L 895 92.5 L 890.5 96.5" stroke="#0F172A" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
               </g>
 
               {/* Arrow 3 Bottom: Leading to Unspent (x: 890, y: 267.5) */}
               <g filter="url(#arrow-shadow)">
-                <circle cx="890" cy="267.5" r="15" fill="#FFFFFF" stroke="#F1F5F9" strokeWidth="1.5" />
-                <path d="M 886 267.5 L 894 267.5 M 890.5 263.5 L 895 267.5 L 890.5 271.5" stroke="#D97706" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="890" cy="267.5" r="15" fill="#FFFFFF" stroke="#E2E8F0" strokeWidth="1.5" />
+                <path d="M 886 267.5 L 894 267.5 M 890.5 263.5 L 895 267.5 L 890.5 271.5" stroke="#0F172A" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
               </g>
 
               {/* ========================================================================= */}
@@ -141,13 +138,13 @@ export const FundPositionPipeline = ({ fundPosition, financialYear }) => {
               <foreignObject x="30" y="35" width="170" height="290">
                 <div
                   onClick={() => navigate('/finance')}
-                  className="w-full h-full rounded-2xl bg-blue-50/50 border-2 border-blue-400 p-4 flex flex-col justify-between items-center text-center shadow-xs hover:shadow-md transition cursor-pointer box-border"
+                  className="w-full h-full rounded-2xl bg-white border-2 border-slate-300 p-4 flex flex-col justify-between items-center text-center shadow-xs hover:shadow-md hover:border-slate-800 transition cursor-pointer box-border"
                 >
                   <div className="flex flex-col items-center">
-                    <div className="w-12 h-12 rounded-full bg-blue-100 border border-blue-200 text-blue-700 flex items-center justify-center mb-2.5 shadow-xs">
+                    <div className="w-12 h-12 rounded-full bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center mb-2.5 shadow-xs">
                       <Landmark className="w-6 h-6" />
                     </div>
-                    <span className="text-xs font-bold text-slate-800 leading-tight">
+                    <span className="text-xs font-bold text-slate-900 leading-tight">
                       Total Available Capital
                     </span>
                   </div>
@@ -156,7 +153,7 @@ export const FundPositionPipeline = ({ fundPosition, financialYear }) => {
                     <span className="text-2xl font-black font-display text-slate-900 block tracking-tight">
                       {formatCurrency(allocation, true)}
                     </span>
-                    <span className="text-base font-extrabold text-blue-600 mt-1 block">
+                    <span className="text-sm font-bold text-slate-600 mt-1 block">
                       100%
                     </span>
                   </div>
@@ -167,13 +164,13 @@ export const FundPositionPipeline = ({ fundPosition, financialYear }) => {
               <foreignObject x="350" y="52.5" width="170" height="255">
                 <div
                   onClick={() => navigate('/finance')}
-                  className="w-full h-full rounded-2xl bg-cyan-50/50 border-2 border-cyan-400 p-4 flex flex-col justify-between items-center text-center shadow-xs hover:shadow-md transition cursor-pointer box-border"
+                  className="w-full h-full rounded-2xl bg-white border-2 border-slate-300 p-4 flex flex-col justify-between items-center text-center shadow-xs hover:shadow-md hover:border-slate-800 transition cursor-pointer box-border"
                 >
                   <div className="flex flex-col items-center">
-                    <div className="w-12 h-12 rounded-full bg-cyan-100 border border-cyan-200 text-cyan-700 flex items-center justify-center mb-2.5 shadow-xs">
+                    <div className="w-12 h-12 rounded-full bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center mb-2.5 shadow-xs">
                       <CheckSquare className="w-6 h-6" />
                     </div>
-                    <span className="text-xs font-bold text-slate-800 leading-tight">
+                    <span className="text-xs font-bold text-slate-900 leading-tight">
                       Administratively Approved
                     </span>
                   </div>
@@ -182,7 +179,7 @@ export const FundPositionPipeline = ({ fundPosition, financialYear }) => {
                     <span className="text-2xl font-black font-display text-slate-900 block tracking-tight">
                       {formatCurrency(sanctioned, true)}
                     </span>
-                    <span className="text-base font-extrabold text-cyan-600 mt-1 block">
+                    <span className="text-sm font-bold text-slate-600 mt-1 block">
                       84%
                     </span>
                   </div>
@@ -193,13 +190,13 @@ export const FundPositionPipeline = ({ fundPosition, financialYear }) => {
               <foreignObject x="670" y="72.5" width="170" height="215">
                 <div
                   onClick={() => navigate('/finance')}
-                  className="w-full h-full rounded-2xl bg-indigo-50/50 border-2 border-indigo-400 p-4 flex flex-col justify-between items-center text-center shadow-xs hover:shadow-md transition cursor-pointer box-border"
+                  className="w-full h-full rounded-2xl bg-white border-2 border-slate-300 p-4 flex flex-col justify-between items-center text-center shadow-xs hover:shadow-md hover:border-slate-800 transition cursor-pointer box-border"
                 >
                   <div className="flex flex-col items-center">
-                    <div className="w-12 h-12 rounded-full bg-indigo-100 border border-indigo-200 text-indigo-700 flex items-center justify-center mb-2 shadow-xs">
+                    <div className="w-12 h-12 rounded-full bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center mb-2 shadow-xs">
                       <Database className="w-6 h-6" />
                     </div>
-                    <span className="text-xs font-bold text-slate-800 leading-tight">
+                    <span className="text-xs font-bold text-slate-900 leading-tight">
                       Ground Expenditure
                     </span>
                   </div>
@@ -208,7 +205,7 @@ export const FundPositionPipeline = ({ fundPosition, financialYear }) => {
                     <span className="text-2xl font-black font-display text-slate-900 block tracking-tight">
                       {formatCurrency(utilized, true)}
                     </span>
-                    <span className="text-base font-extrabold text-indigo-600 mt-1 block">
+                    <span className="text-sm font-bold text-slate-600 mt-1 block">
                       63%
                     </span>
                   </div>
@@ -219,13 +216,13 @@ export const FundPositionPipeline = ({ fundPosition, financialYear }) => {
               <foreignObject x="940" y="15" width="170" height="155">
                 <div
                   onClick={() => navigate('/finance')}
-                  className="w-full h-full rounded-2xl bg-rose-50/70 border-2 border-rose-300 p-3.5 flex flex-col justify-between items-center text-center shadow-xs hover:shadow-md transition cursor-pointer box-border"
+                  className="w-full h-full rounded-2xl bg-white border-2 border-slate-300 p-3.5 flex flex-col justify-between items-center text-center shadow-xs hover:shadow-md hover:border-slate-800 transition cursor-pointer box-border"
                 >
                   <div className="flex flex-col items-center">
-                    <div className="w-8 h-8 rounded-full bg-rose-100 border border-rose-200 text-rose-600 flex items-center justify-center mb-1 shadow-xs">
+                    <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center mb-1 shadow-xs">
                       <ShieldCheck className="w-4 h-4" />
                     </div>
-                    <span className="text-xs font-bold text-slate-800 leading-tight">
+                    <span className="text-xs font-bold text-slate-900 leading-tight">
                       Released (Utilized)
                     </span>
                   </div>
@@ -234,7 +231,7 @@ export const FundPositionPipeline = ({ fundPosition, financialYear }) => {
                     <span className="text-xl font-black font-display text-slate-900 block tracking-tight whitespace-nowrap">
                       {formatCurrency(utilized, true)}
                     </span>
-                    <span className="text-xs font-extrabold text-rose-600 block mt-0.5">
+                    <span className="text-xs font-bold text-slate-600 block mt-0.5">
                       82.9%
                     </span>
                   </div>
@@ -245,13 +242,13 @@ export const FundPositionPipeline = ({ fundPosition, financialYear }) => {
               <foreignObject x="940" y="190" width="170" height="155">
                 <div
                   onClick={() => navigate('/finance')}
-                  className="w-full h-full rounded-2xl bg-amber-50/70 border-2 border-amber-300 p-3.5 flex flex-col justify-between items-center text-center shadow-xs hover:shadow-md transition cursor-pointer box-border"
+                  className="w-full h-full rounded-2xl bg-white border-2 border-slate-300 p-3.5 flex flex-col justify-between items-center text-center shadow-xs hover:shadow-md hover:border-slate-800 transition cursor-pointer box-border"
                 >
                   <div className="flex flex-col items-center">
-                    <div className="w-8 h-8 rounded-full bg-amber-100 border border-amber-200 text-amber-700 flex items-center justify-center mb-1 shadow-xs">
+                    <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 text-slate-800 flex items-center justify-center mb-1 shadow-xs">
                       <AlertTriangle className="w-4 h-4" />
                     </div>
-                    <span className="text-xs font-bold text-slate-800 leading-tight">
+                    <span className="text-xs font-bold text-slate-900 leading-tight">
                       Unspent / Unutilized
                     </span>
                   </div>
@@ -260,37 +257,13 @@ export const FundPositionPipeline = ({ fundPosition, financialYear }) => {
                     <span className="text-xl font-black font-display text-slate-900 block tracking-tight whitespace-nowrap">
                       {formatCurrency(unspentReleased, true)}
                     </span>
-                    <span className="text-xs font-extrabold text-amber-600 block mt-0.5">
+                    <span className="text-xs font-bold text-slate-600 block mt-0.5">
                       17.1%
                     </span>
                   </div>
                 </div>
               </foreignObject>
             </svg>
-          </div>
-
-          {/* --- BOTTOM LEGEND --- */}
-          <div className="flex items-center justify-center flex-wrap gap-6 pt-4 mt-2 border-t border-slate-100 text-xs font-semibold text-slate-600">
-            <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-blue-600" />
-              <span>Total Available Capital</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-cyan-500" />
-              <span>Approved</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-indigo-600" />
-              <span>Expenditure</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-rose-500" />
-              <span>Released (Utilized)</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
-              <span>Unspent</span>
-            </div>
           </div>
         </div>
       </div>

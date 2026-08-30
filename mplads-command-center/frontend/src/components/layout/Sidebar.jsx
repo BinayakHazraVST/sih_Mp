@@ -69,7 +69,7 @@ export const Sidebar = ({ isCollapsed = false, onToggle, mobileOpen = false, onM
           </div>
           {/* Always show text on mobile drawer; respect collapsed state on desktop */}
           <div className={`min-w-0 transition-opacity duration-200 ${isCollapsed ? 'hidden md:hidden' : 'block'}`}>
-            <h1 className="font-display font-extrabold text-slate-900 text-sm tracking-tight leading-none truncate group-hover/logo:text-indigo-600 transition-colors">
+            <h1 className="font-display font-extrabold text-slate-900 text-sm tracking-tight leading-none truncate group-hover/logo:text-slate-700 transition-colors">
               MPLADS AI
             </h1>
             <span className="text-[11px] font-semibold text-slate-500 block mt-1 leading-tight truncate">
@@ -85,7 +85,7 @@ export const Sidebar = ({ isCollapsed = false, onToggle, mobileOpen = false, onM
             onToggle();
           }}
           title={isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
-          className={`p-1 rounded-lg text-slate-400 hover:text-indigo-600 hover:bg-slate-200/60 transition cursor-pointer shrink-0 ${
+          className={`p-1 rounded-lg text-slate-400 hover:text-slate-900 hover:bg-slate-200/60 transition cursor-pointer shrink-0 ${
             isCollapsed ? 'hidden' : 'hidden md:block'
           }`}
         >
@@ -127,11 +127,11 @@ export const Sidebar = ({ isCollapsed = false, onToggle, mobileOpen = false, onM
                     `flex items-center gap-2.5 rounded-xl transition-all ${
                       isCollapsed && !mobileOpen
                         ? 'justify-center px-0 py-2.5 w-10 mx-auto'
-                        : 'px-2.5 py-2 text-xs font-semibold'
+                        : 'px-3 py-2 text-xs font-semibold'
                     } ${
                       isActive
-                        ? 'bg-indigo-50 text-indigo-700 font-bold border border-indigo-100 shadow-xs'
-                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                        ? 'bg-slate-900 text-white font-bold shadow-xs'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                     }`
                   }
                 >
@@ -150,7 +150,7 @@ export const Sidebar = ({ isCollapsed = false, onToggle, mobileOpen = false, onM
           <button
             onClick={onToggle}
             title="Expand Sidebar"
-            className="p-1.5 rounded-xl text-slate-400 hover:text-indigo-600 hover:bg-slate-100 transition cursor-pointer"
+            className="p-1.5 rounded-xl text-slate-400 hover:text-slate-900 hover:bg-slate-100 transition cursor-pointer"
           >
             <ChevronRight className="w-4 h-4" />
           </button>

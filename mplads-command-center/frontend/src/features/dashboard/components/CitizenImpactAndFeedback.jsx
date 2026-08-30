@@ -16,7 +16,7 @@ export const CitizenImpactAndFeedback = ({ impact, financialYear }) => {
       action={
         <button
           onClick={() => navigate('/beneficiaries')}
-          className="text-xs font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1 cursor-pointer"
+          className="text-xs font-bold text-black hover:text-slate-700 flex items-center gap-1 cursor-pointer"
         >
           <span>Impact Dossier</span>
           <ArrowUpRight className="w-3.5 h-3.5" />

@@ -25,6 +25,16 @@ import {
   ArrowRight
 } from 'lucide-react';
 
+const getGradeBadgeVariant = (grade) => {
+  if (!grade) return 'slate';
+  const g = grade.toUpperCase().trim();
+  if (g.includes('A+') || g.includes('GRADE A') || g === 'A') return 'emerald';
+  if (g.includes('B+') || g.includes('GRADE B+') || g === 'B+') return 'indigo';
+  if (g.includes('B') || g.includes('GRADE B')) return 'amber';
+  if (g.includes('C') || g.includes('D')) return 'rose';
+  return 'slate';
+};
+
 export const Contractors = () => {
   const navigate = useNavigate();
   const { currentMP } = useAuth();
@@ -138,8 +148,8 @@ export const Contractors = () => {
         </div>
 
         <div className="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-xs flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-violet-50 border border-violet-100 flex items-center justify-center text-violet-600 shrink-0">
-            <Star className="w-5 h-5 fill-violet-500 text-violet-500" />
+          <div className="w-10 h-10 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-500 shrink-0">
+            <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
           </div>
           <div>
             <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Avg Rating Score</span>
@@ -156,7 +166,7 @@ export const Contractors = () => {
             onClick={() => setScope('mp')}
             className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
               scope === 'mp'
-                ? 'bg-white text-indigo-700 shadow-xs'
+                ? 'bg-white text-slate-900 shadow-xs border border-slate-200'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
@@ -166,7 +176,7 @@ export const Contractors = () => {
             onClick={() => setScope('all')}
             className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
               scope === 'all'
-                ? 'bg-white text-indigo-700 shadow-xs'
+                ? 'bg-white text-slate-900 shadow-xs border border-slate-200'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
@@ -184,7 +194,7 @@ export const Contractors = () => {
               placeholder="Search promoter name, registration ID..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:bg-white transition"
+              className="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:border-slate-500 focus:bg-white transition"
             />
           </div>
 
@@ -194,7 +204,7 @@ export const Contractors = () => {
             <select
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
-              className="w-full sm:w-auto px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 focus:outline-none focus:border-indigo-500 cursor-pointer"
+              className="w-full sm:w-auto px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-900 focus:outline-none focus:border-slate-500 cursor-pointer"
             >
               <option value="ALL">All Categories</option>
               <option value="Grade A">Grade A</option>
@@ -210,7 +220,7 @@ export const Contractors = () => {
       {/* Promoter Cards Section Title */}
       <div className="flex items-center justify-between pt-2">
         <h3 className="text-base font-extrabold text-slate-900 flex items-center gap-2">
-          <Layers className="w-4.5 h-4.5 text-indigo-600" />
+          <Layers className="w-4.5 h-4.5 text-slate-900" />
           <span>Promoter Directory Cards ({filteredContractors.length})</span>
         </h3>
         <span className="text-xs text-slate-500 font-medium">
@@ -237,7 +247,7 @@ export const Contractors = () => {
             const isExpanded = expandedContractorId === c.id;
 
             return (
-              <div key={c.id} className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-xs hover:shadow-md hover:border-indigo-200 transition-all space-y-5 flex flex-col justify-between">
+              <div key={c.id} className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-xs hover:shadow-md hover:border-slate-300 transition-all space-y-5 flex flex-col justify-between">
                 <div className="space-y-5">
                   {/* Header Row */}
                   <div className="flex items-start justify-between gap-4">
@@ -247,7 +257,9 @@ export const Contractors = () => {
                       </span>
                       <h4 className="text-lg sm:text-xl font-extrabold text-slate-900 mt-1 leading-snug">{c.name}</h4>
                     </div>
-                    <Badge variant="emerald">{c.performanceCategory}</Badge>
+                    <Badge variant={getGradeBadgeVariant(c.performanceCategory)}>
+                      {c.performanceCategory}
+                    </Badge>
                   </div>
 
                   {/* Minimal KPI Metrics Cards (Bigger Data Points) */}
@@ -255,21 +267,21 @@ export const Contractors = () => {
                     <div className="bg-slate-50 border border-slate-200/70 p-3.5 rounded-xl text-center">
                       <span className="text-xs font-semibold text-slate-500 block">Rating Score</span>
                       <div className="flex items-center justify-center gap-1.5 mt-1">
-                        <Star className="w-4 h-4 fill-amber-500 text-amber-500 shrink-0" />
-                        <span className="text-xl font-black text-amber-800">{c.rating}</span>
+                        <Star className="w-4 h-4 fill-slate-900 text-slate-900 shrink-0" />
+                        <span className="text-xl font-black text-slate-900">{c.rating}</span>
                       </div>
                     </div>
 
-                    <div className="bg-indigo-50/50 border border-indigo-100 p-3.5 rounded-xl text-center">
-                      <span className="text-xs font-semibold text-indigo-700 block">Sanctioned Funds</span>
-                      <div className="text-lg sm:text-xl font-black text-indigo-900 mt-1 truncate">
+                    <div className="bg-slate-50 border border-slate-200/70 p-3.5 rounded-xl text-center">
+                      <span className="text-xs font-semibold text-slate-500 block">Sanctioned Funds</span>
+                      <div className="text-lg sm:text-xl font-black text-slate-900 mt-1 truncate">
                         {formatCurrency(sanctionedAmount, true)}
                       </div>
                     </div>
 
                     <div className="bg-slate-50 border border-slate-200/70 p-3.5 rounded-xl text-center">
                       <span className="text-xs font-semibold text-slate-500 block">Assigned Works</span>
-                      <div className="text-lg sm:text-xl font-black text-slate-800 mt-1">
+                      <div className="text-lg sm:text-xl font-black text-slate-900 mt-1">
                         {projects.length} {projects.length === 1 ? 'Work' : 'Works'}
                       </div>
                     </div>
@@ -279,11 +291,11 @@ export const Contractors = () => {
                   <div className="space-y-1.5">
                     <div className="flex items-center justify-between text-xs font-bold">
                       <span className="text-slate-700">Financial Execution</span>
-                      <span className="text-emerald-700 font-extrabold text-sm">{utilizationRate}% Utilized</span>
+                      <span className="text-slate-900 font-extrabold text-sm">{utilizationRate}% Utilized</span>
                     </div>
                     <div className="w-full h-2.5 bg-slate-100 border border-slate-200/80 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-emerald-500 rounded-full transition-all duration-500"
+                        className="h-full bg-slate-900 rounded-full transition-all duration-500"
                         style={{ width: `${Math.min(utilizationRate, 100)}%` }}
                       />
                     </div>
@@ -296,10 +308,10 @@ export const Contractors = () => {
                       className="w-full px-4 py-3 flex items-center justify-between text-xs font-bold text-slate-800 hover:bg-slate-100/80 transition"
                     >
                       <span className="flex items-center gap-2">
-                        <FolderKanban className="w-4 h-4 text-indigo-600" />
+                        <FolderKanban className="w-4 h-4 text-slate-700" />
                         <span>Assigned Projects under Promoter ({projects.length})</span>
                       </span>
-                      <span className="flex items-center gap-1 text-xs font-bold text-indigo-600">
+                      <span className="flex items-center gap-1 text-xs font-bold text-black">
                         {isExpanded ? 'Hide Works' : 'View Works'}
                         {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                       </span>
@@ -313,7 +325,7 @@ export const Contractors = () => {
                           projects.map((p) => (
                             <div
                               key={p.id}
-                              className="p-3 bg-slate-50 border border-slate-200/70 rounded-xl space-y-2 text-xs hover:bg-indigo-50/30 transition"
+                              className="p-3 bg-slate-50 border border-slate-200/70 rounded-xl space-y-2 text-xs hover:bg-slate-100 transition"
                             >
                               <div className="flex items-start justify-between gap-2">
                                 <div>
@@ -333,7 +345,7 @@ export const Contractors = () => {
 
                               <div className="flex items-center justify-between text-xs text-slate-600 font-semibold pt-1 border-t border-slate-200/60">
                                 <span>Sanctioned: <strong className="text-slate-900 font-bold">{formatCurrency(p.sanctionedAmount, true)}</strong></span>
-                                <span>Progress: <strong className="text-indigo-700 font-bold">{p.completionPercentage}%</strong></span>
+                                <span>Progress: <strong className="text-slate-900 font-bold">{p.completionPercentage}%</strong></span>
                               </div>
                             </div>
                           ))
@@ -352,7 +364,7 @@ export const Contractors = () => {
 
                   <button
                     onClick={() => navigate(`/contractors/${c.id}`)}
-                    className="px-4 py-2 bg-indigo-50 hover:bg-indigo-600 text-indigo-700 hover:text-white border border-indigo-200 hover:border-indigo-600 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 shrink-0 cursor-pointer"
+                    className="px-4 py-2 bg-slate-50 hover:bg-slate-900 text-black hover:text-white border border-slate-200 hover:border-slate-900 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 shrink-0 cursor-pointer"
                   >
                     <span>View Details</span>
                     <ArrowRight className="w-3.5 h-3.5" />

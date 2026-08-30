@@ -5,9 +5,9 @@ export const ProjectStatusChart = ({ statusCounts = { completed: 0, ongoing: 0, 
   const total = (statusCounts.completed || 0) + (statusCounts.ongoing || 0) + (statusCounts.notStarted || 0) || 1;
 
   const items = [
-    { label: 'Completed', count: statusCounts.completed || 0, color: 'bg-emerald-500', badge: 'emerald' },
-    { label: 'Ongoing', count: statusCounts.ongoing || 0, color: 'bg-indigo-600', badge: 'indigo' },
-    { label: 'Not Started', count: statusCounts.notStarted || 0, color: 'bg-amber-500', badge: 'amber' }
+    { label: 'Completed', count: statusCounts.completed || 0, color: 'bg-black', badge: 'emerald' },
+    { label: 'Ongoing', count: statusCounts.ongoing || 0, color: 'bg-slate-600', badge: 'indigo' },
+    { label: 'Not Started', count: statusCounts.notStarted || 0, color: 'bg-slate-300', badge: 'amber' }
   ];
 
   return (

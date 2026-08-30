@@ -23,16 +23,16 @@ export const ProjectLocationMapSection = ({
   const embedUrl = `https://maps.google.com/maps?q=${lat},${lng}&t=${mapType === 'satellite' ? 'k' : 'm'}&z=15&output=embed`;
 
   return (
-    <Card className="hover:border-rose-200 transition">
+    <Card className="hover:border-slate-300 transition">
       <div className="space-y-4">
         {/* 1. SECTION HEADER */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-rose-600 flex items-center justify-center text-white shadow-sm shrink-0">
-              <MapPin className="w-5 h-5 fill-white text-rose-600" />
+            <div className="w-10 h-10 rounded-xl bg-rose-50 border border-rose-100 flex items-center justify-center text-rose-600 shrink-0">
+              <MapPin className="w-5 h-5 text-rose-600" />
             </div>
             <div>
-              <h2 className="text-base font-black text-rose-700 tracking-wide uppercase">
+              <h2 className="text-base font-black text-slate-900 tracking-wide uppercase">
                 GEOGRAPHIC LOCATION & SITE MAP
               </h2>
               <p className="text-xs text-slate-500 font-medium mt-0.5">
@@ -83,9 +83,9 @@ export const ProjectLocationMapSection = ({
 
         {/* 2. METADATA ROW */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3.5">
-          {/* Exact GPS Coordinates */}
+          {/* GPS Coordinates */}
           <div className="md:col-span-4 p-3.5 bg-slate-50 border border-slate-200/90 rounded-2xl flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-rose-500 shadow-2xs shrink-0">
+            <div className="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-sky-600 shadow-2xs shrink-0">
               <Navigation className="w-4 h-4" />
             </div>
             <div>
@@ -100,7 +100,7 @@ export const ProjectLocationMapSection = ({
 
           {/* District & Constituency */}
           <div className="md:col-span-4 p-3.5 bg-slate-50 border border-slate-200/90 rounded-2xl flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-500 shadow-2xs shrink-0">
+            <div className="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-rose-500 shadow-2xs shrink-0">
               <MapPin className="w-4 h-4" />
             </div>
             <div>
@@ -114,15 +114,15 @@ export const ProjectLocationMapSection = ({
           </div>
 
           {/* Geofence Status */}
-          <div className="md:col-span-4 p-3.5 bg-emerald-50/90 border border-emerald-200/90 rounded-2xl flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-white border border-emerald-200 flex items-center justify-center text-emerald-600 shadow-2xs shrink-0">
-              <CheckCircle2 className="w-4 h-4" />
+          <div className="md:col-span-4 p-3.5 bg-slate-50 border border-slate-200/90 rounded-2xl flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-emerald-600 shadow-2xs shrink-0">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
             </div>
             <div>
-              <span className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-700 block">
+              <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500 block">
                 GEOFENCE STATUS
               </span>
-              <strong className="text-xs sm:text-sm font-black text-emerald-950 mt-0.5 block">
+              <strong className="text-xs sm:text-sm font-black text-slate-900 mt-0.5 block">
                 GPS Geotag Verified (Accuracy: ±3m)
               </strong>
             </div>
