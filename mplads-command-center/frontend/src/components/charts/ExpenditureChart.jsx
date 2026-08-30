@@ -1,35 +1,230 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { formatCurrency } from '../../utils/formatCurrency';
 
 export const ExpenditureChart = ({ data = [] }) => {
+  const [hoveredIdx, setHoveredIdx] = useState(null);
+
   if (!data || data.length === 0) {
-    return <p className="text-xs text-slate-400 italic">No monthly expenditure data.</p>;
+    return <p className="text-xs text-slate-400 italic p-4">No monthly expenditure data.</p>;
   }
 
-  const maxAmount = Math.max(...data.map(d => d.amount), 1);
+  // Dimensions & Padding
+  const width = 640;
+  const height = 220;
+  const padding = { top: 30, right: 30, bottom: 46, left: 72 };
+
+  const plotWidth = width - padding.left - padding.right;
+  const plotHeight = height - padding.top - padding.bottom;
+
+  const rawMax = Math.max(...data.map(d => d.amount), 100000);
+  // Round max to nice upper bound
+  const maxVal = Math.ceil(rawMax / 250000) * 250000 || rawMax;
+
+  // Calculate points
+  const points = data.map((d, i) => {
+    const x = padding.left + (i / Math.max(data.length - 1, 1)) * plotWidth;
+    const y = padding.top + plotHeight - (d.amount / maxVal) * plotHeight;
+    return { x, y, ...d, index: i };
+  });
+
+  // Smooth cubic bezier path generator
+  const getCurvedPath = (pts) => {
+    if (pts.length < 2) return '';
+    let d = `M ${pts[0].x},${pts[0].y}`;
+    for (let i = 0; i < pts.length - 1; i++) {
+      const p0 = pts[i === 0 ? 0 : i - 1];
+      const p1 = pts[i];
+      const p2 = pts[i + 1];
+      const p3 = pts[i + 2] || p2;
+
+      const cp1x = p1.x + (p2.x - p0.x) / 6;
+      const cp1y = p1.y + (p2.y - p0.y) / 6;
+      const cp2x = p2.x - (p3.x - p1.x) / 6;
+      const cp2y = p2.y - (p3.y - p1.y) / 6;
+
+      d += ` C ${cp1x},${cp1y} ${cp2x},${cp2y} ${p2.x},${p2.y}`;
+    }
+    return d;
+  };
+
+  const linePath = getCurvedPath(points);
+  const baselineY = padding.top + plotHeight;
+  const areaPath = points.length > 1
+    ? `${linePath} L ${points[points.length - 1].x},${baselineY} L ${points[0].x},${baselineY} Z`
+    : '';
+
+  // Y-axis ticks (4 ticks: 0, 25%, 50%, 75%, 100%)
+  const yTicks = [0, 0.25, 0.5, 0.75, 1].map((pct) => {
+    const val = maxVal * pct;
+    const y = padding.top + plotHeight - pct * plotHeight;
+    let label = '';
+    if (val >= 10000000) {
+      label = `₹${(val / 10000000).toFixed(1)}Cr`;
+    } else if (val >= 100000) {
+      label = `₹${(val / 100000).toFixed(0)}L`;
+    } else if (val >= 1000) {
+      label = `${(val / 1000).toFixed(0)}K`;
+    } else {
+      label = `${val}`;
+    }
+    return { val, y, label };
+  });
 
   return (
-    <div className="pt-2">
-      <div className="h-44 flex items-end gap-3 justify-between px-2">
-        {data.map((item, idx) => {
-          const heightPercent = (item.amount / maxAmount) * 100;
+    <div className="relative w-full overflow-hidden select-none">
+      <svg
+        viewBox={`0 0 ${width} ${height}`}
+        className="w-full h-auto overflow-visible"
+      >
+        <defs>
+          {/* Smooth area gradient matching reference */}
+          <linearGradient id="expenditureAreaGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#6366f1" stopOpacity="0.28" />
+            <stop offset="70%" stopColor="#818cf8" stopOpacity="0.08" />
+            <stop offset="100%" stopColor="#c7d2fe" stopOpacity="0.0" />
+          </linearGradient>
+
+          {/* Line stroke gradient */}
+          <linearGradient id="expenditureLineGradient" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#6366f1" />
+            <stop offset="50%" stopColor="#4f46e5" />
+            <stop offset="100%" stopColor="#6366f1" />
+          </linearGradient>
+
+          {/* Dot Glow Filter */}
+          <filter id="dotGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#6366f1" floodOpacity="0.4" />
+          </filter>
+        </defs>
+
+        {/* Horizontal Gridlines & Y-Axis Labels */}
+        {yTicks.map((tick, idx) => (
+          <g key={idx}>
+            <line
+              x1={padding.left}
+              y1={tick.y}
+              x2={width - padding.right}
+              y2={tick.y}
+              stroke="#f1f5f9"
+              strokeWidth="1.2"
+              strokeDasharray={idx === 0 ? 'none' : '4 4'}
+            />
+            <text
+              x={padding.left - 10}
+              y={tick.y + 4}
+              textAnchor="end"
+              fontSize="9"
+              fontWeight="500"
+              fill="#64748b"
+              fontFamily="Inter, ui-sans-serif, sans-serif"
+            >
+              {tick.label}
+            </text>
+          </g>
+        ))}
+
+        {/* Gradient Area Fill */}
+        {areaPath && (
+          <path
+            d={areaPath}
+            fill="url(#expenditureAreaGradient)"
+          />
+        )}
+
+        {/* Smooth Curved Line */}
+        {linePath && (
+          <path
+            d={linePath}
+            fill="none"
+            stroke="url(#expenditureLineGradient)"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        )}
+
+        {/* Circular Dots on Data Points */}
+        {points.map((pt, idx) => {
+          const isHovered = hoveredIdx === idx;
           return (
-            <div key={idx} className="flex-1 flex flex-col items-center gap-2 group relative">
-              {/* Tooltip */}
-              <div className="absolute -top-10 opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900 text-white text-[10px] px-2.5 py-1 rounded shadow-md pointer-events-none whitespace-nowrap z-10">
-                {item.month}: {formatCurrency(item.amount)}
-              </div>
-              <div className="w-full bg-slate-100 border border-slate-200/60 rounded-t-lg h-36 flex items-end p-1">
-                <div
-                  className="w-full bg-gradient-to-t from-indigo-600 to-indigo-400 rounded-t transition-all duration-500 group-hover:from-indigo-500 group-hover:to-indigo-300"
-                  style={{ height: `${Math.max(heightPercent, 8)}%` }}
+            <g
+              key={idx}
+              className="cursor-pointer"
+              onMouseEnter={() => setHoveredIdx(idx)}
+              onMouseLeave={() => setHoveredIdx(null)}
+            >
+              {/* Vertical guideline on hover */}
+              {isHovered && (
+                <line
+                  x1={pt.x}
+                  y1={padding.top}
+                  x2={pt.x}
+                  y2={baselineY}
+                  stroke="#818cf8"
+                  strokeWidth="1.5"
+                  strokeDasharray="3 3"
                 />
-              </div>
-              <span className="text-[11px] font-semibold text-slate-500">{item.month}</span>
-            </div>
+              )}
+
+              {/* Outer halo for hover */}
+              {isHovered && (
+                <circle
+                  cx={pt.x}
+                  cy={pt.y}
+                  r="11"
+                  fill="#6366f1"
+                  fillOpacity="0.2"
+                />
+              )}
+
+              {/* Data Point Dot */}
+              <circle
+                cx={pt.x}
+                cy={pt.y}
+                r={isHovered ? 6.5 : 5}
+                fill="#6366f1"
+                stroke="#ffffff"
+                strokeWidth="2.5"
+                filter="url(#dotGlow)"
+                className="transition-all duration-200"
+              />
+
+              {/* X-Axis Month Label */}
+              <text
+                x={pt.x}
+                y={baselineY + 26}
+                textAnchor="middle"
+                fontSize="9"
+                fontWeight="500"
+                fill={isHovered ? '#4f46e5' : '#475569'}
+                fontFamily="Inter, ui-sans-serif, sans-serif"
+              >
+                {pt.month}
+              </text>
+            </g>
           );
         })}
-      </div>
+      </svg>
+
+      {/* Floating Hover Tooltip */}
+      {hoveredIdx !== null && points[hoveredIdx] && (
+        <div
+          className="absolute z-20 bg-slate-900 text-white px-3 py-2 rounded-xl shadow-xl pointer-events-none transform -translate-x-1/2 -translate-y-full transition-all duration-150 border border-slate-700"
+          style={{
+            left: `${(points[hoveredIdx].x / width) * 100}%`,
+            top: `${(points[hoveredIdx].y / height) * 100}%`,
+            marginTop: '-12px',
+            fontFamily: 'Inter, ui-sans-serif, sans-serif',
+          }}
+        >
+          <div style={{ fontSize: '12px', fontWeight: 500, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em', lineHeight: 1.4 }}>
+            {points[hoveredIdx].month}
+          </div>
+          <div style={{ fontSize: '14px', fontWeight: 600, color: '#ffffff', lineHeight: 1.5 }}>
+            {formatCurrency(points[hoveredIdx].amount, true)}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

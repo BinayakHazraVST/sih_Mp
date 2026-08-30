@@ -52,7 +52,10 @@ export const FinancialOverview = () => {
         </Card>
       </div>
 
-      <Card title="Monthly Expenditure Disburshals">
+      <Card>
+        <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#0f172a', marginBottom: '16px', fontFamily: 'Inter, ui-sans-serif, sans-serif' }}>
+          Monthly Expenditure Disbursals
+        </h3>
         <ExpenditureChart data={expenditures} />
       </Card>
     </div>

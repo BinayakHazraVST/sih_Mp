@@ -3,7 +3,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { Card } from '../../components/common/Card';
 import { Button } from '../../components/common/Button';
-import { ShieldCheck, UserCheck, ChevronRight } from 'lucide-react';
+import { AshokStambhLogo } from '../../components/common/AshokStambhLogo';
 
 export const Login = () => {
   const { availableMPs, loginAsMP } = useAuth();
@@ -27,14 +27,19 @@ export const Login = () => {
       <div className="max-w-md w-full space-y-6">
         {/* Logo & Header */}
         <div className="text-center space-y-2">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-indigo-600 to-amber-500 flex items-center justify-center font-extrabold text-white text-2xl mx-auto shadow-xl shadow-indigo-600/10 border border-white">
-            MP
+          <div className="w-20 h-20 mx-auto flex items-center justify-center">
+            <AshokStambhLogo className="w-20 h-20" />
           </div>
-          <h1 className="text-2xl font-extrabold font-display text-slate-900 tracking-tight">
-            MPLADS Command Center
-          </h1>
-          <p className="text-xs text-slate-500 max-w-xs mx-auto">
-            National Governance Platform for Members of Parliament across India
+          <div className="flex items-center justify-center gap-2">
+            <h1 className="text-2xl font-extrabold font-display text-slate-900 tracking-tight">
+              MPLADS
+            </h1>
+            <span className="px-2 py-0.5 rounded text-xs font-black bg-gradient-to-r from-indigo-600 to-indigo-700 text-white tracking-wider shadow-xs">
+              AI
+            </span>
+          </div>
+          <p className="text-xs text-slate-500 max-w-xs mx-auto font-medium">
+            National AI Decision Support & Governance Platform for Members of Parliament
           </p>
         </div>
 

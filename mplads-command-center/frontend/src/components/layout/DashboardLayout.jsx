@@ -1,25 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Sidebar } from './Sidebar';
 import { Navbar } from './Navbar';
 
 export const DashboardLayout = () => {
-  return (
-    <div className="flex min-h-screen bg-slate-100/70 text-slate-900 font-sans antialiased">
-      <Sidebar />
-      <div className="flex-1 flex flex-col min-w-0">
-        <Navbar />
-        <main className="flex-1 p-6 overflow-y-auto">
-          {/* Demo Disclaimer Note */}
-          <div className="mb-5 px-4 py-2.5 bg-amber-50 border border-amber-200/80 rounded-xl text-xs text-amber-800 flex items-center justify-between shadow-xs">
-            <span className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-amber-500 inline-block animate-pulse"></span>
-              <strong>Development Notice:</strong> All data in this demo environment is fictional and used for development & validation.
-            </span>
-            <span className="font-bold tracking-wider text-[11px] text-amber-700 uppercase bg-amber-100/70 px-2 py-0.5 rounded">Task 01 Foundation</span>
-          </div>
+  const [collapsed, setCollapsed] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-          <Outlet />
+  // Close mobile sidebar on route change / resize to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setMobileOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return (
+    <div className="flex h-screen overflow-hidden bg-slate-100/70 text-slate-900 font-sans antialiased">
+      {/* Mobile Overlay Backdrop */}
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+          onClick={() => setMobileOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* Sidebar — desktop sticky, mobile fixed drawer */}
+      <Sidebar
+        isCollapsed={collapsed}
+        onToggle={() => setCollapsed(!collapsed)}
+        mobileOpen={mobileOpen}
+        onMobileClose={() => setMobileOpen(false)}
+      />
+
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col min-w-0 overflow-hidden transition-all duration-300">
+        <Navbar onHamburgerClick={() => setMobileOpen(true)} />
+        <main className="flex-1 overflow-y-auto px-4 py-4 sm:px-6 sm:py-5 lg:px-8 lg:py-6">
+          <div className="w-full max-w-[1580px] mx-auto">
+            <Outlet />
+          </div>
         </main>
       </div>
     </div>
