@@ -47,8 +47,8 @@ export const Dashboard = () => {
       {/* PAGE HEADING */}
       <div className="flex items-start justify-between flex-wrap gap-3 pb-2 border-b border-slate-200">
         <div>
-          <h1 className="text-2xl font-extrabold font-display text-slate-900 tracking-tight">
-            Dashboard
+          <h1 className="text-2xl font-bold font-display text-slate-900 tracking-tight font-sans">
+            Overview Dashboard
           </h1>
           <p className="text-xs font-semibold text-slate-500 mt-0.5">
             Parliamentary Constituency Telemetry & Financial Overview
