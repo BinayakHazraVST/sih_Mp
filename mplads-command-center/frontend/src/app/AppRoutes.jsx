@@ -12,7 +12,6 @@ import { FinancialOverview } from '../features/finance/FinancialOverview';
 import { ConstituencyMap } from '../features/geography/ConstituencyMap';
 import { Contractors } from '../features/contractors/Contractors';
 import { ContractorDetails } from '../features/contractors/ContractorDetails';
-import { Reports } from '../features/reports/Reports';
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
@@ -56,9 +55,6 @@ export const AppRoutes = () => {
         {/* Contractors */}
         <Route path={ROUTES.CONTRACTORS} element={<Contractors />} />
         <Route path={ROUTES.CONTRACTOR_DETAILS} element={<ContractorDetails />} />
-
-        {/* Reports */}
-        <Route path={ROUTES.REPORTS} element={<Reports />} />
       </Route>
 
       <Route path="*" element={<Navigate to={ROUTES.DASHBOARD} replace />} />

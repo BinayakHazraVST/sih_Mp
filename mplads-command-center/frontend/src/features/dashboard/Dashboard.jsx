@@ -45,7 +45,7 @@ export const Dashboard = () => {
   return (
     <div className="space-y-6">
       {/* PAGE HEADING */}
-      <div className="flex items-center justify-between pb-2 border-b border-slate-200">
+      <div className="flex items-start justify-between flex-wrap gap-3 pb-2 border-b border-slate-200">
         <div>
           <h1 className="text-2xl font-extrabold font-display text-slate-900 tracking-tight">
             Dashboard

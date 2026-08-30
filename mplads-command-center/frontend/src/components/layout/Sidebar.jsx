@@ -6,15 +6,15 @@ import {
   Landmark, 
   MapPin, 
   Building2, 
-  FileSpreadsheet,
   ShieldAlert,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  X
 } from 'lucide-react';
 import { ROUTES } from '../../constants/routes';
 import { AshokStambhLogo } from '../common/AshokStambhLogo';
 
-export const Sidebar = ({ isCollapsed = false, onToggle }) => {
+export const Sidebar = ({ isCollapsed = false, onToggle, mobileOpen = false, onMobileClose }) => {
   const navGroups = [
     {
       title: 'OVERVIEW',
@@ -35,57 +35,70 @@ export const Sidebar = ({ isCollapsed = false, onToggle }) => {
         { label: 'Financial Overview', path: ROUTES.FINANCE, icon: Landmark },
         { label: 'Contractors Directory', path: ROUTES.CONTRACTORS, icon: Building2 }
       ]
-    },
-    {
-      title: 'ACCOUNTABILITY',
-      items: [
-        { label: 'Reports & Audits', path: ROUTES.REPORTS, icon: FileSpreadsheet }
-      ]
     }
   ];
 
   return (
     <aside
-      className={`sticky top-0 h-screen bg-white border-r border-slate-200 flex flex-col shrink-0 z-40 overflow-hidden transition-all duration-300 ease-in-out ${
-        isCollapsed ? 'w-16' : 'w-56'
-      }`}
+      className={`
+        bg-white border-r border-slate-200 flex flex-col shrink-0 z-50 overflow-hidden transition-all duration-300 ease-in-out
+
+        /* Desktop: full-height sidebar in the fixed h-screen layout */
+        md:relative md:h-full
+        ${isCollapsed ? 'md:w-16' : 'md:w-56'}
+
+        /* Mobile: fixed drawer that slides in from left */
+        fixed inset-y-0 left-0 h-full w-64
+        ${mobileOpen ? 'translate-x-0' : '-translate-x-full'}
+        md:translate-x-0
+      `}
     >
       {/* Brand Logo Header with Toggle Button */}
       <div
-        className={`h-16 border-b border-slate-200 shrink-0 bg-white flex items-center justify-between transition-all cursor-pointer group/logo hover:bg-slate-50 select-none ${
-          isCollapsed ? 'px-2 justify-center' : 'px-3.5'
+        className={`h-16 border-b border-slate-200 shrink-0 bg-white flex items-center justify-between transition-all select-none ${
+          isCollapsed ? 'px-2 md:justify-center' : 'px-3.5'
         }`}
-        onClick={onToggle}
-        title={isCollapsed ? "Click to expand sidebar" : "Click to collapse sidebar"}
       >
-        <div className="flex items-center gap-2.5 overflow-hidden">
+        <div
+          className="flex items-center gap-2.5 overflow-hidden cursor-pointer group/logo hover:opacity-80 transition"
+          onClick={onToggle}
+          title={isCollapsed ? 'Click to expand sidebar' : 'Click to collapse sidebar'}
+        >
           <div className="transition-transform group-hover/logo:scale-105 shrink-0">
             <AshokStambhLogo className="w-9 h-9 shrink-0" theme="light" />
           </div>
-          {!isCollapsed && (
-            <div className="min-w-0 transition-opacity duration-200">
-              <h1 className="font-display font-extrabold text-slate-900 text-sm tracking-tight leading-none truncate group-hover/logo:text-indigo-600 transition-colors">
-                MPLADS AI
-              </h1>
-              <span className="text-[11px] font-semibold text-slate-500 block mt-1 leading-tight truncate">
-                Monitoring Platform
-              </span>
-            </div>
-          )}
+          {/* Always show text on mobile drawer; respect collapsed state on desktop */}
+          <div className={`min-w-0 transition-opacity duration-200 ${isCollapsed ? 'hidden md:hidden' : 'block'}`}>
+            <h1 className="font-display font-extrabold text-slate-900 text-sm tracking-tight leading-none truncate group-hover/logo:text-indigo-600 transition-colors">
+              MPLADS AI
+            </h1>
+            <span className="text-[11px] font-semibold text-slate-500 block mt-1 leading-tight truncate">
+              Monitoring Platform
+            </span>
+          </div>
         </div>
 
-        {/* Sidebar Collapse/Expand Toggle Button */}
+        {/* Desktop collapse toggle */}
         <button
           onClick={(e) => {
             e.stopPropagation();
             onToggle();
           }}
-          title={isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+          title={isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
           className={`p-1 rounded-lg text-slate-400 hover:text-indigo-600 hover:bg-slate-200/60 transition cursor-pointer shrink-0 ${
-            isCollapsed ? 'hidden' : 'block'
+            isCollapsed ? 'hidden' : 'hidden md:block'
           }`}
         >
           <ChevronLeft className="w-4 h-4" />
+        </button>
+
+        {/* Mobile close button */}
+        <button
+          onClick={onMobileClose}
+          className="md:hidden p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition cursor-pointer shrink-0"
+          title="Close menu"
+        >
+          <X className="w-4 h-4" />
         </button>
       </div>
 
@@ -93,7 +106,8 @@ export const Sidebar = ({ isCollapsed = false, onToggle }) => {
       <nav className="flex-1 px-2.5 py-3.5 space-y-3.5 overflow-y-auto overflow-x-hidden">
         {navGroups.map((group, gIdx) => (
           <div key={gIdx} className="space-y-0.5">
-            {!isCollapsed ? (
+            {/* Show group labels on mobile drawer and desktop expanded */}
+            {(!isCollapsed || mobileOpen) ? (
               <div className="px-2.5 pb-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider transition-opacity">
                 {group.title}
               </div>
@@ -107,10 +121,11 @@ export const Sidebar = ({ isCollapsed = false, onToggle }) => {
                 <NavLink
                   key={item.path}
                   to={item.path}
-                  title={isCollapsed ? item.label : undefined}
+                  onClick={onMobileClose} // close drawer on mobile nav
+                  title={isCollapsed && !mobileOpen ? item.label : undefined}
                   className={({ isActive }) =>
                     `flex items-center gap-2.5 rounded-xl transition-all ${
-                      isCollapsed
+                      isCollapsed && !mobileOpen
                         ? 'justify-center px-0 py-2.5 w-10 mx-auto'
                         : 'px-2.5 py-2 text-xs font-semibold'
                     } ${
@@ -121,7 +136,7 @@ export const Sidebar = ({ isCollapsed = false, onToggle }) => {
                   }
                 >
                   <Icon className="w-4 h-4 shrink-0" />
-                  {!isCollapsed && <span className="truncate">{item.label}</span>}
+                  {(!isCollapsed || mobileOpen) && <span className="truncate">{item.label}</span>}
                 </NavLink>
               );
             })}
@@ -130,7 +145,7 @@ export const Sidebar = ({ isCollapsed = false, onToggle }) => {
       </nav>
 
       {/* Footer Status Banner / Toggle Pill */}
-      {isCollapsed ? (
+      {isCollapsed && !mobileOpen ? (
         <div className="shrink-0 p-2.5 border-t border-slate-100 flex flex-col items-center gap-2">
           <button
             onClick={onToggle}

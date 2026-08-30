@@ -4,7 +4,7 @@ import { PROJECT_STATUS_COLORS, PROJECT_STATUS_LABELS } from '../../constants/pr
 import { formatCurrency } from '../../utils/formatCurrency';
 import { formatDate } from '../../utils/formatDate';
 import { useNavigate } from 'react-router-dom';
-import { Eye } from 'lucide-react';
+import { Eye, ArrowRight } from 'lucide-react';
 
 export const ProjectTable = ({ projects = [] }) => {
   const navigate = useNavigate();
@@ -31,23 +31,35 @@ export const ProjectTable = ({ projects = [] }) => {
         <tbody className="divide-y divide-slate-100">
           {projects.map((proj) => {
             const badgeVariant = PROJECT_STATUS_COLORS[proj.status] || 'slate';
+            const title = proj.title || proj.name || 'Untitled';
+            const physicalProgress = proj.progress?.physical ?? proj.completionPercentage ?? 0;
+            const sanctioned = proj.financial?.sanctioned ?? proj.sanctionedAmount ?? 0;
+            const utilized = proj.financial?.utilized ?? proj.utilizedAmount ?? 0;
+
             return (
-              <tr key={proj.id} className="hover:bg-slate-50/80 transition duration-150">
+              <tr 
+                key={proj.id} 
+                className="hover:bg-slate-50/80 transition duration-150 cursor-pointer"
+                onClick={() => navigate(`/projects/${proj.id}`)}
+              >
                 <td className="py-3.5 px-4 font-semibold text-slate-900 max-w-xs truncate">
-                  {proj.name}
+                  <div>
+                    <span className="text-[10px] font-mono text-slate-400 font-bold block">{proj.id}</span>
+                    <span className="font-bold text-slate-900">{title}</span>
+                  </div>
                 </td>
                 <td className="py-3.5 px-4 text-slate-700 font-medium">{proj.sector}</td>
                 <td className="py-3.5 px-4 text-slate-500 text-xs">
-                  {proj.location?.village}, {proj.location?.district}
+                  {proj.location?.village || proj.location?.area}, {proj.location?.district}
                 </td>
-                <td className="py-3.5 px-4 font-semibold text-slate-800">{formatCurrency(proj.sanctionedAmount, true)}</td>
-                <td className="py-3.5 px-4 font-semibold text-emerald-700">{formatCurrency(proj.utilizedAmount, true)}</td>
+                <td className="py-3.5 px-4 font-semibold text-slate-800">{formatCurrency(sanctioned, true)}</td>
+                <td className="py-3.5 px-4 font-semibold text-emerald-700">{formatCurrency(utilized, true)}</td>
                 <td className="py-3.5 px-4">
                   <div className="flex items-center gap-2">
                     <div className="w-16 bg-slate-100 border border-slate-200/80 rounded-full h-2 overflow-hidden">
-                      <div className="bg-indigo-600 h-full rounded-full" style={{ width: `${proj.completionPercentage}%` }} />
+                      <div className="bg-indigo-600 h-full rounded-full" style={{ width: `${physicalProgress}%` }} />
                     </div>
-                    <span className="text-xs font-bold text-slate-700">{proj.completionPercentage}%</span>
+                    <span className="text-xs font-bold text-slate-700">{physicalProgress}%</span>
                   </div>
                 </td>
                 <td className="py-3.5 px-4">
@@ -57,11 +69,15 @@ export const ProjectTable = ({ projects = [] }) => {
                 </td>
                 <td className="py-3.5 px-4 text-right">
                   <button
-                    onClick={() => navigate(`/projects/${proj.id}`)}
-                    className="p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/projects/${proj.id}`);
+                    }}
+                    className="p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition inline-flex items-center gap-1 text-xs font-bold"
                     title="View Details"
                   >
                     <Eye className="w-4 h-4" />
+                    <span className="hidden sm:inline">View</span>
                   </button>
                 </td>
               </tr>

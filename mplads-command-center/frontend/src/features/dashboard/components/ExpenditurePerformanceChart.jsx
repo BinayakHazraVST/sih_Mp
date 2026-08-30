@@ -61,7 +61,7 @@ export const ExpenditurePerformanceChart = ({ performance, financialYear }) => {
       </div>
 
       {/* Chart Legend */}
-      <div className="flex items-center justify-between mb-4 text-xs font-semibold text-slate-600">
+      <div className="flex items-center justify-between flex-wrap gap-y-2 mb-4 text-xs font-semibold text-slate-600">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-1.5">
             <span className="w-3 h-3 rounded bg-indigo-200 border border-indigo-400" />

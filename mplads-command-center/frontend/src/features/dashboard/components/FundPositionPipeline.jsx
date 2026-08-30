@@ -37,7 +37,7 @@ export const FundPositionPipeline = ({ fundPosition, financialYear }) => {
       }
     >
       <div className="py-2 overflow-x-auto">
-        <div className="min-w-[1120px] max-w-6xl mx-auto px-2 py-2 select-none">
+        <div className="w-full max-w-6xl mx-auto px-2 py-2 select-none" style={{ minWidth: '640px' }}>
           {/* --- PROPORTIONAL & SPACIOUS SANKEY SVG FLOW --- */}
           <div className="w-full relative h-[410px]">
             <svg
