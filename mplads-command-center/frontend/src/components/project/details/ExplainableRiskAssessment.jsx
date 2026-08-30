@@ -7,7 +7,7 @@ import { ShieldAlert, AlertTriangle, CheckCircle2, Info, Layers } from 'lucide-r
 const SEVERITY_BADGES = {
   LOW: { variant: 'emerald', label: 'Low' },
   MEDIUM: { variant: 'amber', label: 'Medium' },
-  HIGH: { variant: 'orange', label: 'High' },
+  HIGH: { variant: 'rose', label: 'High' },
   CRITICAL: { variant: 'rose', label: 'Critical' },
 };
 
@@ -69,7 +69,7 @@ export const ExplainableRiskAssessment = ({ risk = {} }) => {
 
         {/* 2. EXPLAINABLE RISK FACTOR BREAKDOWN */}
         <div className="space-y-3">
-          <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+          <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
             <Layers className="w-3.5 h-3.5 text-indigo-600" />
             <span>Explainable Factor Breakdown</span>
           </h4>
@@ -103,15 +103,7 @@ export const ExplainableRiskAssessment = ({ risk = {} }) => {
 
                     <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
                       <div
-                        className={`h-full rounded-full transition-all duration-500 ${
-                          factor.severity === 'CRITICAL'
-                            ? 'bg-rose-500'
-                            : factor.severity === 'HIGH'
-                            ? 'bg-orange-500'
-                            : factor.severity === 'MEDIUM'
-                            ? 'bg-amber-500'
-                            : 'bg-emerald-500'
-                        }`}
+                        className="h-full bg-slate-900 rounded-full transition-all duration-500"
                         style={{ width: `${pct}%` }}
                       />
                     </div>

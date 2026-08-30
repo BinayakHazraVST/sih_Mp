@@ -50,8 +50,8 @@ export const getProgressAlignment = (physicalProgress = 0, financialProgress = 0
       description: `Disbursements recorded (68%) lead on-site verified completion (53%) by ${diff}%. Physical verification and itemized voucher review are advised.`,
       badgeVariant: 'rose',
       textColor: 'text-rose-700',
-      bgColor: 'bg-rose-50',
-      borderColor: 'border-rose-200',
+      bgColor: 'bg-white',
+      borderColor: 'border-slate-200',
       signal: 'Verification recommended',
     };
   }
@@ -65,8 +65,8 @@ export const getProgressAlignment = (physicalProgress = 0, financialProgress = 0
       description: `Disbursements are pacing slightly ahead of field execution (+${diff}%). Recommended to monitor upcoming milestone delivery.`,
       badgeVariant: 'amber',
       textColor: 'text-amber-700',
-      bgColor: 'bg-amber-50',
-      borderColor: 'border-amber-200',
+      bgColor: 'bg-white',
+      borderColor: 'border-slate-200',
       signal: 'Monitor milestone pace',
     };
   }
@@ -80,8 +80,8 @@ export const getProgressAlignment = (physicalProgress = 0, financialProgress = 0
       description: `Contractor delivery is ahead of billed disbursements. Ready for next scheduled tranche release upon MB submission.`,
       badgeVariant: 'sky',
       textColor: 'text-sky-700',
-      bgColor: 'bg-sky-50',
-      borderColor: 'border-sky-200',
+      bgColor: 'bg-white',
+      borderColor: 'border-slate-200',
       signal: 'Ready for tranche release',
     };
   }
@@ -94,8 +94,8 @@ export const getProgressAlignment = (physicalProgress = 0, financialProgress = 0
     description: `Physical progress (${physicalProgress}%) and financial utilization (${financialProgress}%) are balanced within normal variance limits.`,
     badgeVariant: 'emerald',
     textColor: 'text-emerald-700',
-    bgColor: 'bg-emerald-50',
-    borderColor: 'border-emerald-200',
+    bgColor: 'bg-white',
+    borderColor: 'border-slate-200',
     signal: 'Execution on track',
   };
 };

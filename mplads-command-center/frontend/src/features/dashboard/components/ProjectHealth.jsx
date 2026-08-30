@@ -66,17 +66,17 @@ export const ProjectHealth = ({ projectHealth }) => {
         </div>
         <div className="h-3.5 w-full bg-slate-100 border border-slate-200 rounded-full flex overflow-hidden p-0.5 gap-0.5 shadow-xs">
           <div
-            className="h-full bg-emerald-500 first:rounded-l-full transition-all duration-500"
+            className="h-full bg-black first:rounded-l-full transition-all duration-500"
             style={{ width: `${(projectHealth.onTrack / total) * 100}%` }}
             title={`On Track: ${projectHealth.onTrack}`}
           />
           <div
-            className="h-full bg-amber-500 transition-all duration-500"
+            className="h-full bg-slate-500 transition-all duration-500"
             style={{ width: `${(projectHealth.atRisk / total) * 100}%` }}
             title={`At Risk: ${projectHealth.atRisk}`}
           />
           <div
-            className="h-full bg-rose-500 last:rounded-r-full transition-all duration-500"
+            className="h-full bg-slate-300 last:rounded-r-full transition-all duration-500"
             style={{ width: `${(projectHealth.delayed / total) * 100}%` }}
             title={`Delayed: ${projectHealth.delayed}`}
           />
@@ -125,7 +125,7 @@ export const ProjectHealth = ({ projectHealth }) => {
             </span>
           </div>
         </div>
-        <span className="text-xs font-bold text-rose-700 flex items-center gap-1 shrink-0">
+        <span className="text-xs font-bold text-black flex items-center gap-1 shrink-0">
           <span>Review</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </span>

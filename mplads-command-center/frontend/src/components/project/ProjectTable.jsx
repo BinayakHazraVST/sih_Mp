@@ -53,11 +53,11 @@ export const ProjectTable = ({ projects = [] }) => {
                   {proj.location?.village || proj.location?.area}, {proj.location?.district}
                 </td>
                 <td className="py-3.5 px-4 font-semibold text-slate-800">{formatCurrency(sanctioned, true)}</td>
-                <td className="py-3.5 px-4 font-semibold text-emerald-700">{formatCurrency(utilized, true)}</td>
+                <td className="py-3.5 px-4 font-semibold text-slate-900">{formatCurrency(utilized, true)}</td>
                 <td className="py-3.5 px-4">
                   <div className="flex items-center gap-2">
                     <div className="w-16 bg-slate-100 border border-slate-200/80 rounded-full h-2 overflow-hidden">
-                      <div className="bg-indigo-600 h-full rounded-full" style={{ width: `${physicalProgress}%` }} />
+                      <div className="bg-slate-900 h-full rounded-full" style={{ width: `${physicalProgress}%` }} />
                     </div>
                     <span className="text-xs font-bold text-slate-700">{physicalProgress}%</span>
                   </div>
@@ -73,7 +73,7 @@ export const ProjectTable = ({ projects = [] }) => {
                       e.stopPropagation();
                       navigate(`/projects/${proj.id}`);
                     }}
-                    className="p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition inline-flex items-center gap-1 text-xs font-bold"
+                    className="p-1.5 text-slate-600 hover:text-black hover:bg-slate-100 rounded-lg transition inline-flex items-center gap-1 text-xs font-bold"
                     title="View Details"
                   >
                     <Eye className="w-4 h-4" />

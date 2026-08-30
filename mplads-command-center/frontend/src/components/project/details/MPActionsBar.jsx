@@ -65,7 +65,7 @@ export const MPActionsBar = ({ project }) => {
         <div className="flex flex-wrap items-center gap-2.5">
           <button
             onClick={() => setActiveModal('clarification')}
-            className="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer shadow-xs"
+            className="px-3.5 py-2 bg-slate-900 hover:bg-black text-white border border-slate-700 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer shadow-xs"
           >
             <HelpCircle className="w-3.5 h-3.5" />
             <span>Request Clarification</span>
@@ -75,13 +75,13 @@ export const MPActionsBar = ({ project }) => {
             onClick={() => setActiveModal('inspection')}
             className="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer"
           >
-            <FileSearch className="w-3.5 h-3.5 text-sky-400" />
+            <FileSearch className="w-3.5 h-3.5 text-slate-400" />
             <span>Mandate Field Inspection</span>
           </button>
 
           <button
             onClick={() => setActiveModal('escalate')}
-            className="px-3.5 py-2 bg-rose-950/80 hover:bg-rose-900 text-rose-300 border border-rose-800 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer"
+            className="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer"
           >
             <AlertOctagon className="w-3.5 h-3.5 text-rose-400" />
             <span>Escalate Delay / Mismatch</span>
@@ -92,7 +92,7 @@ export const MPActionsBar = ({ project }) => {
               onClick={() => navigate(`/contractors/${project.contractor.id}`)}
               className="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer"
             >
-              <Building2 className="w-3.5 h-3.5 text-indigo-400" />
+              <Building2 className="w-3.5 h-3.5 text-slate-400" />
               <span>Inspect Contractor Profile</span>
             </button>
           )}
@@ -113,8 +113,8 @@ export const MPActionsBar = ({ project }) => {
           <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-slate-200">
               <h4 className="font-extrabold text-slate-900 text-base flex items-center gap-2">
-                {activeModal === 'clarification' && <><HelpCircle className="w-5 h-5 text-indigo-600" /> Request Statutory Clarification</>}
-                {activeModal === 'inspection' && <><FileSearch className="w-5 h-5 text-sky-600" /> Mandate Field Quality Inspection</>}
+                {activeModal === 'clarification' && <><HelpCircle className="w-5 h-5 text-slate-700" /> Request Statutory Clarification</>}
+                {activeModal === 'inspection' && <><FileSearch className="w-5 h-5 text-slate-700" /> Mandate Field Quality Inspection</>}
                 {activeModal === 'escalate' && <><AlertOctagon className="w-5 h-5 text-rose-600" /> Escalate Milestone Delay</>}
               </h4>
               <button
@@ -143,7 +143,7 @@ export const MPActionsBar = ({ project }) => {
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
                   placeholder="Enter details, reference observations, or special instructions..."
-                  className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:bg-white transition"
+                  className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-medium text-slate-900 placeholder-slate-400 focus:outline-none focus:border-slate-500 focus:bg-white transition"
                 />
               </div>
             </div>
@@ -157,9 +157,7 @@ export const MPActionsBar = ({ project }) => {
               </button>
               <button
                 onClick={() => handleActionSubmit(activeModal)}
-                className={`px-4 py-2 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
-                  activeModal === 'escalate' ? 'bg-rose-600 hover:bg-rose-700' : 'bg-indigo-600 hover:bg-indigo-700'
-                }`}
+                className="px-4 py-2 bg-slate-900 hover:bg-black text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer shadow-xs"
               >
                 <Send className="w-3.5 h-3.5" />
                 <span>Submit Parliamentary Action</span>

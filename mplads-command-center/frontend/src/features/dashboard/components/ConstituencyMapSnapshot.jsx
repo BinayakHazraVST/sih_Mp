@@ -31,7 +31,7 @@ export const ConstituencyMapSnapshot = ({ constituencyMap, constituencyName = 'P
       action={
         <button
           onClick={() => navigate('/geography')}
-          className="text-xs font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1 cursor-pointer"
+          className="text-xs font-bold text-black hover:text-slate-700 flex items-center gap-1 cursor-pointer"
         >
           <span>Open Full GIS Map</span>
           <ArrowUpRight className="w-3.5 h-3.5" />
@@ -139,7 +139,7 @@ export const ConstituencyMapSnapshot = ({ constituencyMap, constituencyName = 'P
                   </div>
                   <div className="w-full h-2 bg-white border border-slate-200 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-indigo-600 rounded-full transition-all duration-300"
+                      className="h-full bg-slate-900 rounded-full transition-all duration-300"
                       style={{ width: `${selectedPin.progress}%` }}
                     />
                   </div>
@@ -159,7 +159,7 @@ export const ConstituencyMapSnapshot = ({ constituencyMap, constituencyName = 'P
 
           <button
             onClick={() => navigate('/projects')}
-            className="w-full mt-3 py-2 px-2 bg-white hover:bg-slate-100 text-indigo-700 text-xs font-bold rounded-xl border border-slate-300 transition shadow-xs flex items-center justify-center gap-1 cursor-pointer truncate"
+            className="w-full mt-3 py-2 px-2 bg-white hover:bg-slate-100 text-black hover:text-slate-700 text-xs font-bold rounded-xl border border-slate-300 transition shadow-xs flex items-center justify-center gap-1 cursor-pointer truncate"
           >
             <span className="truncate">Inspect Project Dossier</span>
             <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />

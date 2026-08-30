@@ -44,49 +44,45 @@ export const ProjectFinancialsFlow = ({ financial = {} }) => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600">
-              <Coins className="w-4 h-4" />
+              <Coins className="w-4 h-4 text-emerald-600" />
             </div>
             <div>
               <h3 className="text-sm font-extrabold text-slate-900">Financial Overview & Money Flow</h3>
               <p className="text-[11px] text-slate-500">Sanctioned allocation, released tranches, and contractor expenditure status.</p>
             </div>
           </div>
-
-          <Badge variant="emerald">
-            {stats.utilizationOfReleased}% of Released Funds Utilized
-          </Badge>
         </div>
 
         {/* 1. FINANCIAL SUMMARY METRIC TILES */}
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 text-center">
           <div className="p-3 bg-slate-50 border border-slate-200/80 rounded-xl">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Estimated Cost</span>
+            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Estimated Cost</span>
             <span className="text-base sm:text-lg font-black text-slate-900 mt-0.5 block">{formatCurrency(stats.estimatedCost, true)}</span>
             <span className="text-[10px] text-slate-500 font-medium block">DPR Estimate</span>
           </div>
 
-          <div className="p-3 bg-indigo-50/60 border border-indigo-100 rounded-xl">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-700 block">Sanctioned</span>
-            <span className="text-base sm:text-lg font-black text-indigo-950 mt-0.5 block">{formatCurrency(stats.sanctioned, true)}</span>
-            <span className="text-[10px] text-indigo-600 font-semibold block">MP Sanction Order</span>
+          <div className="p-3 bg-slate-50 border border-slate-200/80 rounded-xl">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Sanctioned</span>
+            <span className="text-base sm:text-lg font-black text-slate-900 mt-0.5 block">{formatCurrency(stats.sanctioned, true)}</span>
+            <span className="text-[10px] text-slate-500 font-medium block">MP Sanction Order</span>
           </div>
 
-          <div className="p-3 bg-sky-50/60 border border-sky-100 rounded-xl">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-sky-700 block">Released</span>
-            <span className="text-base sm:text-lg font-black text-sky-900 mt-0.5 block">{formatCurrency(stats.released, true)}</span>
-            <span className="text-[10px] text-sky-600 font-semibold block">{stats.releasePercentage}% of Sanctioned</span>
+          <div className="p-3 bg-slate-50 border border-slate-200/80 rounded-xl">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Released</span>
+            <span className="text-base sm:text-lg font-black text-slate-900 mt-0.5 block">{formatCurrency(stats.released, true)}</span>
+            <span className="text-[10px] text-slate-500 font-medium block">{stats.releasePercentage}% of Sanctioned</span>
           </div>
 
-          <div className="p-3 bg-emerald-50/60 border border-emerald-100 rounded-xl">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 block">Utilized</span>
-            <span className="text-base sm:text-lg font-black text-emerald-900 mt-0.5 block">{formatCurrency(stats.utilized, true)}</span>
-            <span className="text-[10px] text-emerald-600 font-semibold block">{stats.utilizationOfSanctioned}% Total Executed</span>
+          <div className="p-3 bg-slate-50 border border-slate-200/80 rounded-xl">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Utilized</span>
+            <span className="text-base sm:text-lg font-black text-slate-900 mt-0.5 block">{formatCurrency(stats.utilized, true)}</span>
+            <span className="text-[10px] text-slate-500 font-medium block">{stats.utilizationOfSanctioned}% Total Executed</span>
           </div>
 
-          <div className="p-3 bg-amber-50/60 border border-amber-100 rounded-xl col-span-2 sm:col-span-1">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 block">Unutilized Released</span>
-            <span className="text-base sm:text-lg font-black text-amber-900 mt-0.5 block">{formatCurrency(stats.remainingReleased, true)}</span>
-            <span className="text-[10px] text-amber-600 font-medium block">Unspent in Agency</span>
+          <div className="p-3 bg-slate-50 border border-slate-200/80 rounded-xl col-span-2 sm:col-span-1">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">Unutilized Released</span>
+            <span className="text-base sm:text-lg font-black text-slate-900 mt-0.5 block">{formatCurrency(stats.remainingReleased, true)}</span>
+            <span className="text-[10px] text-slate-500 font-medium block">Unspent in Agency</span>
           </div>
         </div>
 
@@ -96,7 +92,7 @@ export const ProjectFinancialsFlow = ({ financial = {} }) => {
         <div className="space-y-3 pt-2">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div className="flex items-center gap-2">
-              <Receipt className="w-4 h-4 text-indigo-600" />
+              <Receipt className="w-4 h-4 text-slate-500" />
               <h4 className="text-xs font-extrabold text-slate-900 uppercase tracking-wider">
                 Payment & Disbursement Vouchers ({payments.length})
               </h4>

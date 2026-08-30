@@ -30,11 +30,11 @@ export const FinancialOverview = () => {
         </Card>
         <Card className="text-center p-4">
           <span className="text-xs text-slate-500 font-semibold block">Released Amount</span>
-          <span className="text-2xl font-bold font-display text-sky-700">{formatCurrency(fundSummary.released, true)}</span>
+          <span className="text-2xl font-bold font-display text-slate-900">{formatCurrency(fundSummary.released, true)}</span>
         </Card>
         <Card className="text-center p-4">
           <span className="text-xs text-slate-500 font-semibold block">Utilized Amount</span>
-          <span className="text-2xl font-bold font-display text-emerald-700">{formatCurrency(fundSummary.utilized, true)}</span>
+          <span className="text-2xl font-bold font-display text-slate-900">{formatCurrency(fundSummary.utilized, true)}</span>
         </Card>
       </div>
 

@@ -77,23 +77,9 @@ export const ExpenditureChart = ({ data = [] }) => {
         className="w-full h-auto overflow-visible"
       >
         <defs>
-          {/* Smooth area gradient matching reference */}
-          <linearGradient id="expenditureAreaGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#6366f1" stopOpacity="0.28" />
-            <stop offset="70%" stopColor="#818cf8" stopOpacity="0.08" />
-            <stop offset="100%" stopColor="#c7d2fe" stopOpacity="0.0" />
-          </linearGradient>
-
-          {/* Line stroke gradient */}
-          <linearGradient id="expenditureLineGradient" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor="#6366f1" />
-            <stop offset="50%" stopColor="#4f46e5" />
-            <stop offset="100%" stopColor="#6366f1" />
-          </linearGradient>
-
           {/* Dot Glow Filter */}
           <filter id="dotGlow" x="-50%" y="-50%" width="200%" height="200%">
-            <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#6366f1" floodOpacity="0.4" />
+            <feDropShadow dx="0" dy="1" stdDeviation="2" floodColor="#0f172a" floodOpacity="0.2" />
           </filter>
         </defs>
 
@@ -123,27 +109,19 @@ export const ExpenditureChart = ({ data = [] }) => {
           </g>
         ))}
 
-        {/* Gradient Area Fill */}
-        {areaPath && (
-          <path
-            d={areaPath}
-            fill="url(#expenditureAreaGradient)"
-          />
-        )}
-
-        {/* Smooth Curved Line */}
+        {/* Smooth Curved Line in Black */}
         {linePath && (
           <path
             d={linePath}
             fill="none"
-            stroke="url(#expenditureLineGradient)"
+            stroke="#0f172a"
             strokeWidth="3"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
         )}
 
-        {/* Circular Dots on Data Points */}
+        {/* Circular Dots on Data Points in Black */}
         {points.map((pt, idx) => {
           const isHovered = hoveredIdx === idx;
           return (
@@ -160,7 +138,7 @@ export const ExpenditureChart = ({ data = [] }) => {
                   y1={padding.top}
                   x2={pt.x}
                   y2={baselineY}
-                  stroke="#818cf8"
+                  stroke="#94a3b8"
                   strokeWidth="1.5"
                   strokeDasharray="3 3"
                 />
@@ -172,8 +150,8 @@ export const ExpenditureChart = ({ data = [] }) => {
                   cx={pt.x}
                   cy={pt.y}
                   r="11"
-                  fill="#6366f1"
-                  fillOpacity="0.2"
+                  fill="#0f172a"
+                  fillOpacity="0.12"
                 />
               )}
 
@@ -182,7 +160,7 @@ export const ExpenditureChart = ({ data = [] }) => {
                 cx={pt.x}
                 cy={pt.y}
                 r={isHovered ? 6.5 : 5}
-                fill="#6366f1"
+                fill="#0f172a"
                 stroke="#ffffff"
                 strokeWidth="2.5"
                 filter="url(#dotGlow)"
@@ -196,7 +174,7 @@ export const ExpenditureChart = ({ data = [] }) => {
                 textAnchor="middle"
                 fontSize="9"
                 fontWeight="500"
-                fill={isHovered ? '#4f46e5' : '#475569'}
+                fill={isHovered ? '#0f172a' : '#475569'}
                 fontFamily="Inter, ui-sans-serif, sans-serif"
               >
                 {pt.month}

@@ -19,8 +19,8 @@ export const SectorAllocationChart = ({ sectors = [] }) => {
             </div>
             <div className="w-full h-2.5 bg-slate-100 border border-slate-200/70 rounded-full overflow-hidden p-0.5">
               <div
-                className="h-full rounded-full transition-all duration-500"
-                style={{ width: `${sec.percentage}%`, backgroundColor: color }}
+                className="h-full bg-slate-900 rounded-full transition-all duration-500"
+                style={{ width: `${sec.percentage}%` }}
               />
             </div>
           </div>

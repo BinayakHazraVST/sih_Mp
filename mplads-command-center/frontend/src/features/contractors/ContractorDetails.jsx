@@ -26,6 +26,16 @@ import {
   Layers 
 } from 'lucide-react';
 
+const getGradeBadgeVariant = (grade) => {
+  if (!grade) return 'slate';
+  const g = grade.toUpperCase().trim();
+  if (g.includes('A+') || g.includes('GRADE A') || g === 'A') return 'emerald';
+  if (g.includes('B+') || g.includes('GRADE B+') || g === 'B+') return 'indigo';
+  if (g.includes('B') || g.includes('GRADE B')) return 'amber';
+  if (g.includes('C') || g.includes('D')) return 'rose';
+  return 'slate';
+};
+
 export const ContractorDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -61,7 +71,7 @@ export const ContractorDetails = () => {
       <div className="space-y-4">
         <Link
           to={ROUTES.CONTRACTORS}
-          className="inline-flex items-center gap-2 text-xs font-bold text-indigo-600 hover:text-indigo-800 transition"
+          className="inline-flex items-center gap-2 text-xs font-bold text-black hover:text-slate-700 transition"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Promoters Directory</span>
@@ -105,7 +115,9 @@ export const ContractorDetails = () => {
                 <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
                   {contractor.registrationNumber}
                 </span>
-                <Badge variant="emerald">{contractor.performanceCategory}</Badge>
+                <Badge variant={getGradeBadgeVariant(contractor.performanceCategory)}>
+                  {contractor.performanceCategory}
+                </Badge>
                 <span className="text-xs text-slate-500 flex items-center gap-1 font-semibold">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" /> Empanelled Vendor
                 </span>
@@ -133,16 +145,16 @@ export const ContractorDetails = () => {
             <span className="text-[11px] font-semibold text-slate-400 block mt-0.5">Verified Corporate</span>
           </div>
 
-          <div className="p-4 bg-indigo-50/60 border border-indigo-100 rounded-xl">
-            <span className="text-xs font-bold text-indigo-700 block">Sanctioned Budget</span>
-            <strong className="text-lg font-black text-indigo-900 mt-1 block">{formatCurrency(sanctionedAmount, true)}</strong>
-            <span className="text-[11px] text-indigo-700 font-semibold block mt-0.5">Total Awarded</span>
+          <div className="p-4 bg-slate-50 border border-slate-200/70 rounded-xl">
+            <span className="text-xs font-semibold text-slate-500 block">Sanctioned Budget</span>
+            <strong className="text-lg font-black text-slate-900 mt-1 block">{formatCurrency(sanctionedAmount, true)}</strong>
+            <span className="text-[11px] text-slate-500 font-semibold block mt-0.5">Total Awarded</span>
           </div>
 
-          <div className="p-4 bg-emerald-50/60 border border-emerald-100 rounded-xl">
-            <span className="text-xs font-bold text-emerald-700 block">Funds Utilized</span>
-            <strong className="text-lg font-black text-emerald-900 mt-1 block">{formatCurrency(utilizedAmount, true)}</strong>
-            <span className="text-[11px] text-emerald-700 font-semibold block mt-0.5">{utilizationRate}% Executed</span>
+          <div className="p-4 bg-slate-50 border border-slate-200/70 rounded-xl">
+            <span className="text-xs font-semibold text-slate-500 block">Funds Utilized</span>
+            <strong className="text-lg font-black text-slate-900 mt-1 block">{formatCurrency(utilizedAmount, true)}</strong>
+            <span className="text-[11px] text-slate-500 font-semibold block mt-0.5">{utilizationRate}% Executed</span>
           </div>
         </div>
 
@@ -150,11 +162,11 @@ export const ContractorDetails = () => {
         <div className="space-y-1.5">
           <div className="flex items-center justify-between text-xs font-bold">
             <span className="text-slate-700">Overall Financial Execution Rate</span>
-            <span className="text-emerald-700 font-extrabold text-sm">{utilizationRate}% Utilized</span>
+            <span className="text-slate-900 font-extrabold text-sm">{utilizationRate}% Utilized</span>
           </div>
           <div className="w-full h-3 bg-slate-100 border border-slate-200/80 rounded-full overflow-hidden p-0.5">
             <div
-              className="h-full bg-emerald-500 rounded-full transition-all duration-500"
+              className="h-full bg-slate-900 rounded-full transition-all duration-500"
               style={{ width: `${Math.min(utilizationRate, 100)}%` }}
             />
           </div>
@@ -235,7 +247,7 @@ export const ContractorDetails = () => {
                   </div>
                   <div>
                     <span className="text-[10px] font-semibold text-slate-400 block">Utilized</span>
-                    <strong className="text-emerald-700 font-bold block mt-0.5">
+                    <strong className="text-slate-900 font-bold block mt-0.5">
                       {formatCurrency(project.utilizedAmount, true)}
                     </strong>
                   </div>
@@ -245,13 +257,11 @@ export const ContractorDetails = () => {
                 <div className="space-y-1.5">
                   <div className="flex items-center justify-between text-xs font-bold">
                     <span className="text-slate-600">Work Completion</span>
-                    <span className="text-indigo-700 font-extrabold">{project.completionPercentage}%</span>
+                    <span className="text-slate-900 font-extrabold">{project.completionPercentage}%</span>
                   </div>
                   <div className="w-full h-2.5 bg-slate-100 border border-slate-200/80 rounded-full overflow-hidden">
                     <div
-                      className={`h-full rounded-full transition-all duration-500 ${
-                        project.status === 'COMPLETED' ? 'bg-emerald-500' : 'bg-amber-500'
-                      }`}
+                      className="h-full bg-slate-900 rounded-full transition-all duration-500"
                       style={{ width: `${project.completionPercentage}%` }}
                     />
                   </div>
@@ -266,7 +276,7 @@ export const ContractorDetails = () => {
 
                   <Link
                     to={`/projects/${project.id}`}
-                    className="text-indigo-600 hover:text-indigo-800 font-bold hover:underline transition"
+                    className="text-black hover:text-slate-700 font-bold hover:underline transition"
                   >
                     View Project →
                   </Link>

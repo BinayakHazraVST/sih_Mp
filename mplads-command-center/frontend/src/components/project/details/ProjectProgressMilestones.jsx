@@ -91,13 +91,7 @@ export const ProjectProgressMilestones = ({ overallProgress = 0, milestones = []
                   {/* Milestone Progress Bar */}
                   <div className="w-full bg-slate-200/70 rounded-full h-1.5 overflow-hidden my-1.5">
                     <div
-                      className={`h-full rounded-full transition-all duration-500 ${
-                        isDone
-                          ? 'bg-emerald-500'
-                          : ms.status === 'DELAYED'
-                          ? 'bg-rose-500'
-                          : 'bg-indigo-600'
-                      }`}
+                      className="h-full bg-slate-900 rounded-full transition-all duration-500"
                       style={{ width: `${ms.progress}%` }}
                     />
                   </div>

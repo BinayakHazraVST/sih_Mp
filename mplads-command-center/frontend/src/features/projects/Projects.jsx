@@ -28,14 +28,14 @@ export const Projects = () => {
             <div className="flex bg-slate-100 border border-slate-200 rounded-lg p-1">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-1.5 rounded transition ${viewMode === 'grid' ? 'bg-white text-indigo-600 shadow-xs' : 'text-slate-500 hover:text-slate-800'}`}
+                className={`p-1.5 rounded transition ${viewMode === 'grid' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-500 hover:text-slate-800'}`}
                 title="Grid View"
               >
                 <LayoutGrid className="w-4 h-4" />
               </button>
               <button
                 onClick={() => setViewMode('table')}
-                className={`p-1.5 rounded transition ${viewMode === 'table' ? 'bg-white text-indigo-600 shadow-xs' : 'text-slate-500 hover:text-slate-800'}`}
+                className={`p-1.5 rounded transition ${viewMode === 'table' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-500 hover:text-slate-800'}`}
                 title="Table View"
               >
                 <List className="w-4 h-4" />

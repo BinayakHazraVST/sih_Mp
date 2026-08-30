@@ -19,7 +19,7 @@ export const AgencyPerformance = ({ agencyPerformance = [], contractorPerformanc
               onClick={() => setTab('agencies')}
               className={`px-2.5 py-1 rounded-md transition cursor-pointer ${
                 tab === 'agencies'
-                  ? 'bg-white text-indigo-700 shadow-xs'
+                  ? 'bg-white text-slate-900 shadow-xs'
                   : 'text-slate-500 hover:text-slate-800'
               }`}
             >
@@ -29,7 +29,7 @@ export const AgencyPerformance = ({ agencyPerformance = [], contractorPerformanc
               onClick={() => setTab('contractors')}
               className={`px-2.5 py-1 rounded-md transition cursor-pointer ${
                 tab === 'contractors'
-                  ? 'bg-white text-indigo-700 shadow-xs'
+                  ? 'bg-white text-slate-900 shadow-xs'
                   : 'text-slate-500 hover:text-slate-800'
               }`}
             >
@@ -39,7 +39,7 @@ export const AgencyPerformance = ({ agencyPerformance = [], contractorPerformanc
 
           <button
             onClick={() => navigate(tab === 'agencies' ? '/contractors' : '/contractors')}
-            className="text-xs font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1 cursor-pointer ml-1"
+            className="text-xs font-bold text-black hover:text-slate-700 flex items-center gap-1 cursor-pointer ml-1"
           >
             <span>View Full Directory</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -80,18 +80,12 @@ export const AgencyPerformance = ({ agencyPerformance = [], contractorPerformanc
                         {agency.projects}
                       </td>
                       <td className="py-3.5 px-3 text-center">
-                        <span className="font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
+                        <span className="font-bold text-slate-900 bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">
                           {agency.onTrack}
                         </span>
                       </td>
                       <td className="py-3.5 px-3 text-center">
-                        <span
-                          className={`font-bold px-2 py-0.5 rounded border ${
-                            hasDelays
-                              ? 'text-rose-700 bg-rose-50 border-rose-200'
-                              : 'text-slate-400 bg-slate-50 border-slate-200'
-                          }`}
-                        >
+                        <span className="font-bold text-slate-900 bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">
                           {agency.delayed}
                         </span>
                       </td>
@@ -99,7 +93,7 @@ export const AgencyPerformance = ({ agencyPerformance = [], contractorPerformanc
                         <div className="flex items-center gap-2">
                           <div className="w-16 bg-slate-100 border border-slate-200 rounded-full h-1.5 overflow-hidden">
                             <div
-                              className="bg-indigo-600 h-full rounded-full"
+                              className="bg-slate-900 h-full rounded-full"
                               style={{ width: agency.utilization }}
                             />
                           </div>
@@ -108,11 +102,11 @@ export const AgencyPerformance = ({ agencyPerformance = [], contractorPerformanc
                       </td>
                       <td className="py-3.5 px-4 text-right">
                         {agency.alert ? (
-                          <span className="text-xs font-bold text-rose-700 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded-full inline-flex items-center gap-1">
-                            <AlertTriangle className="w-3 h-3" /> {agency.alert}
+                          <span className="text-xs font-bold text-amber-800 bg-amber-50 border border-amber-300 px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+                            <AlertTriangle className="w-3 h-3 text-amber-600" /> {agency.alert}
                           </span>
                         ) : (
-                          <span className="text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+                          <span className="text-xs font-bold text-slate-900 bg-slate-50 border border-slate-200 px-2 py-0.5 rounded-full inline-flex items-center gap-1">
                             <CheckCircle2 className="w-3 h-3" /> {agency.status}
                           </span>
                         )}
@@ -125,14 +119,14 @@ export const AgencyPerformance = ({ agencyPerformance = [], contractorPerformanc
           </div>
 
           {/* Highlight Warning Banner */}
-          <div className="p-3 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900 flex items-center justify-between">
+          <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs text-amber-700 flex items-center justify-between">
             <span className="flex items-center gap-2">
-              <AlertTriangle className="w-4 h-4 text-amber-700 shrink-0" />
-              <span><strong>Agency Action Flag:</strong> PMC has 2 projects delayed beyond 14 days. Meeting notice suggested for municipal engineer.</span>
+              <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0" />
+              <span><strong className="text-amber-800">Agency Action Flag:</strong> PMC has 2 projects delayed beyond 14 days. Meeting notice suggested for municipal engineer.</span>
             </span>
             <button
               onClick={() => navigate('/projects')}
-              className="text-xs font-bold text-amber-800 underline hover:text-amber-950 shrink-0 cursor-pointer"
+              className="text-xs font-bold text-black hover:text-slate-700 hover:underline shrink-0 cursor-pointer"
             >
               Filter PMC Works →
             </button>
@@ -152,37 +146,35 @@ export const AgencyPerformance = ({ agencyPerformance = [], contractorPerformanc
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 font-medium">
-              {contractorPerformance.map((c, idx) => (
-                <tr key={idx} className="hover:bg-slate-50/80 transition">
-                  <td className="py-3.5 px-4 font-bold text-slate-900">
-                    <div className="flex items-center gap-2">
-                      <HardHat className="w-4 h-4 text-slate-500 shrink-0" />
-                      <span>{c.name}</span>
-                    </div>
-                  </td>
-                  <td className="py-3.5 px-3 text-center font-bold text-slate-800">{c.projects}</td>
-                  <td className="py-3.5 px-3 text-center text-emerald-700 font-bold">{c.completed}</td>
-                  <td className="py-3.5 px-3 text-center">
-                    <span className={`font-bold ${c.delayed > 0 ? 'text-rose-700' : 'text-slate-400'}`}>
-                      {c.delayed}
-                    </span>
-                  </td>
-                  <td className="py-3.5 px-3 text-slate-600">{c.paymentStatus}</td>
-                  <td className="py-3.5 px-4 text-right">
-                    <span
-                      className={`text-[11px] font-bold px-2 py-0.5 rounded border inline-block ${
-                        c.riskLevel === 'High'
-                          ? 'bg-rose-50 text-rose-700 border-rose-200'
-                          : c.riskLevel === 'Medium'
-                          ? 'bg-amber-50 text-amber-800 border-amber-200'
-                          : 'bg-emerald-50 text-emerald-700 border-emerald-200'
-                      }`}
-                    >
-                      {c.riskSignal}
-                    </span>
-                  </td>
-                </tr>
-              ))}
+              {contractorPerformance.map((c, idx) => {
+                const riskBadgeClass = c.riskLevel === 'High'
+                  ? 'bg-rose-50 text-rose-700 border-rose-200'
+                  : c.riskLevel === 'Medium'
+                  ? 'bg-amber-50 text-amber-800 border-amber-300'
+                  : 'bg-slate-50 text-slate-600 border-slate-200';
+
+                return (
+                  <tr key={idx} className="hover:bg-slate-50/80 transition">
+                    <td className="py-3.5 px-4 font-bold text-slate-900">
+                      <div className="flex items-center gap-2">
+                        <HardHat className="w-4 h-4 text-slate-500 shrink-0" />
+                        <span>{c.name}</span>
+                      </div>
+                    </td>
+                    <td className="py-3.5 px-3 text-center font-bold text-slate-800">{c.projects}</td>
+                    <td className="py-3.5 px-3 text-center text-slate-900 font-bold">{c.completed}</td>
+                    <td className="py-3.5 px-3 text-center">
+                      <span className="font-bold text-slate-900">{c.delayed}</span>
+                    </td>
+                    <td className="py-3.5 px-3 text-slate-600">{c.paymentStatus}</td>
+                    <td className="py-3.5 px-4 text-right">
+                      <span className={`text-[11px] font-bold px-2 py-0.5 rounded border inline-block ${riskBadgeClass}`}>
+                        {c.riskSignal}
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

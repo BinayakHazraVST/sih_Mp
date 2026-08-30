@@ -65,7 +65,7 @@ export const ProjectMonitoringTable = ({ projects = [] }) => {
       action={
         <button
           onClick={() => navigate('/projects')}
-          className="text-xs font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1 cursor-pointer"
+          className="text-xs font-bold text-black hover:text-slate-700 flex items-center gap-1 cursor-pointer"
         >
           <span>View All Projects</span>
           <ArrowUpRight className="w-3.5 h-3.5" />
@@ -159,7 +159,7 @@ export const ProjectMonitoringTable = ({ projects = [] }) => {
                   className="hover:bg-slate-50/90 transition cursor-pointer group"
                 >
                   <td className="py-3.5 px-4 max-w-xs">
-                    <span className="font-bold text-slate-900 block truncate group-hover:text-indigo-600 transition">
+                    <span className="font-bold text-slate-900 block truncate group-hover:text-black transition">
                       {proj.name}
                     </span>
                     <span className="text-[11px] text-slate-400">
@@ -175,13 +175,7 @@ export const ProjectMonitoringTable = ({ projects = [] }) => {
                     <div className="flex items-center gap-2">
                       <div className="w-16 bg-slate-100 border border-slate-200 rounded-full h-1.5 overflow-hidden">
                         <div
-                          className={`h-full rounded-full ${
-                            proj.progress === 100
-                              ? 'bg-emerald-500'
-                              : proj.progress < 50
-                              ? 'bg-amber-500'
-                              : 'bg-indigo-600'
-                          }`}
+                          className="h-full bg-slate-900 rounded-full"
                           style={{ width: `${proj.progress}%` }}
                         />
                       </div>
@@ -204,7 +198,7 @@ export const ProjectMonitoringTable = ({ projects = [] }) => {
                   </td>
                   <td className="py-3.5 px-3 text-right">
                     <button
-                      className="p-1 text-slate-400 group-hover:text-indigo-600 group-hover:bg-indigo-50 rounded transition"
+                      className="p-1 text-slate-400 group-hover:text-black group-hover:bg-slate-100 rounded transition"
                       title="View Dossier"
                     >
                       <Eye className="w-4 h-4" />

@@ -24,7 +24,7 @@ export const ProjectHeader = ({ project }) => {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <button
           onClick={() => navigate('/projects')}
-          className="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition cursor-pointer"
+          className="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-black hover:text-slate-700 rounded-xl text-xs font-bold transition cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Projects</span>
@@ -43,8 +43,8 @@ export const ProjectHeader = ({ project }) => {
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-slate-100">
           <div className="space-y-2">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="px-2.5 py-0.5 bg-indigo-50 border border-indigo-200/80 text-indigo-700 rounded-lg text-xs font-extrabold uppercase tracking-wider flex items-center gap-1">
-                <Tag className="w-3 h-3" />
+              <span className="px-2.5 py-0.5 bg-slate-100 border border-slate-200 text-slate-800 rounded-lg text-xs font-extrabold uppercase tracking-wider flex items-center gap-1">
+                <Tag className="w-3 h-3 text-indigo-600" />
                 {project.sector || 'Infrastructure'}
               </span>
 
@@ -58,7 +58,7 @@ export const ProjectHeader = ({ project }) => {
               <span className="text-slate-300">•</span>
 
               <span className="text-xs font-medium text-slate-500">
-                FY: <strong>{project.financialYear || '2026-27'}</strong>
+                FY: <strong className="text-slate-900">{project.financialYear || '2026-27'}</strong>
               </span>
             </div>
 
@@ -100,7 +100,7 @@ export const ProjectHeader = ({ project }) => {
           <div className="flex flex-wrap items-center gap-4">
             <span>Constituency: <strong className="text-slate-900">{project.location?.constituency || 'Pune'}</strong></span>
             <span>Block/Area: <strong className="text-slate-900">{project.location?.area || project.location?.village}</strong></span>
-            <span>Beneficiaries: <strong className="text-indigo-700">{project.beneficiaries?.toLocaleString() || '4,200'} Citizens</strong></span>
+            <span>Beneficiaries: <strong className="text-slate-900">{project.beneficiaries?.toLocaleString() || '4,200'} Citizens</strong></span>
           </div>
 
           <div className="flex items-center gap-2 text-slate-500 font-medium">

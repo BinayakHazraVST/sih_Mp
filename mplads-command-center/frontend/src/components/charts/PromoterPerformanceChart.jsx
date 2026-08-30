@@ -166,12 +166,12 @@ export const PromoterPerformanceChart = ({ contractors = [], isGlobalScope = fal
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
         <div>
           <div className="flex items-center gap-2">
-            <TrendingUp className="w-4.5 h-4.5 text-indigo-600" />
+            <TrendingUp className="w-4.5 h-4.5 text-slate-900" />
             <h3 className="text-base font-extrabold text-slate-900 tracking-tight">
               Promoter Performance & Comparative Analysis
             </h3>
           </div>
-          <p className="text-xs text-slate-500 mt-0.5">
+          <p className="text-xs text-slate-600 mt-0.5">
             Multi-line comparative curves tracking civil promoters' work execution trajectories and quality scores over time.
           </p>
         </div>
@@ -183,9 +183,9 @@ export const PromoterPerformanceChart = ({ contractors = [], isGlobalScope = fal
               setMetricMode('progress');
               setHoveredNode(null);
             }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
               metricMode === 'progress'
-                ? 'bg-white text-indigo-700 shadow-xs'
+                ? 'bg-white text-slate-900 shadow-xs border border-slate-200'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
@@ -199,9 +199,9 @@ export const PromoterPerformanceChart = ({ contractors = [], isGlobalScope = fal
               setMetricMode('expenditure');
               setHoveredNode(null);
             }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
               metricMode === 'expenditure'
-                ? 'bg-white text-indigo-700 shadow-xs'
+                ? 'bg-white text-slate-900 shadow-xs border border-slate-200'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
@@ -215,9 +215,9 @@ export const PromoterPerformanceChart = ({ contractors = [], isGlobalScope = fal
               setMetricMode('rating');
               setHoveredNode(null);
             }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
               metricMode === 'rating'
-                ? 'bg-white text-indigo-700 shadow-xs'
+                ? 'bg-white text-slate-900 shadow-xs border border-slate-200'
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
@@ -230,19 +230,11 @@ export const PromoterPerformanceChart = ({ contractors = [], isGlobalScope = fal
       </div>
 
       {/* SVG Multi-Line Chart Canvas */}
-      <div className="relative w-full overflow-hidden rounded-2xl bg-slate-50/40 p-2 border border-slate-200/70">
+      <div className="relative w-full overflow-hidden rounded-2xl bg-white p-2 border border-slate-200">
         <svg
           viewBox={`0 0 ${width} ${height}`}
           className="w-full h-auto overflow-visible select-none"
         >
-          <defs>
-            {/* Soft Translucent Blue Gradient Fill under the Lead Curve */}
-            <linearGradient id="promoterAreaGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.25" />
-              <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.01" />
-            </linearGradient>
-          </defs>
-
           {/* Horizontal Background Grid Lines */}
           {yTicks.map((tick, i) => (
             <g key={i}>
@@ -283,13 +275,14 @@ export const PromoterPerformanceChart = ({ contractors = [], isGlobalScope = fal
                 width={32}
                 height={16}
                 rx={4}
-                fill={i % 2 === 0 ? '#dcfce7' : '#dbeafe'}
+                fill="#f1f5f9"
+                stroke="#e2e8f0"
               />
               <text
                 x={paddingLeft - 26}
                 y={tick.y + 4}
                 textAnchor="middle"
-                className="text-[9px] font-bold fill-slate-700"
+                className="text-[9px] font-bold fill-slate-900"
               >
                 {tick.val}
               </text>
@@ -321,13 +314,14 @@ export const PromoterPerformanceChart = ({ contractors = [], isGlobalScope = fal
                 width={32}
                 height={16}
                 rx={4}
-                fill={i % 2 === 0 ? '#dbeafe' : '#fef3c7'}
+                fill="#f1f5f9"
+                stroke="#e2e8f0"
               />
               <text
                 x={width - paddingRight + 26}
                 y={tick.y + 4}
                 textAnchor="middle"
-                className="text-[9px] font-bold fill-slate-700"
+                className="text-[9px] font-bold fill-slate-900"
               >
                 {tick.val}
               </text>
@@ -368,22 +362,13 @@ export const PromoterPerformanceChart = ({ contractors = [], isGlobalScope = fal
                   x={x}
                   y={height - paddingBottom + 23}
                   textAnchor="middle"
-                  className="text-[10px] font-extrabold fill-slate-600"
+                  className="text-[10px] font-extrabold fill-slate-900"
                 >
                   {month}
                 </text>
               </g>
             );
           })}
-
-          {/* Area Fill beneath the lead promoter curve */}
-          {leadSeries && leadSeries.areaPath && (
-            <path
-              d={leadSeries.areaPath}
-              fill="url(#promoterAreaGrad)"
-              className="transition-all duration-500 pointer-events-none"
-            />
-          )}
 
           {/* Vertical Crosshair Guideline when node is hovered */}
           {hoveredNode && (
@@ -542,7 +527,7 @@ export const PromoterPerformanceChart = ({ contractors = [], isGlobalScope = fal
               className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-bold transition-all ${
                 isHovered
                   ? 'bg-slate-900 text-white border-slate-800 shadow-sm scale-105'
-                  : 'bg-slate-50 text-slate-700 border-slate-200/90 hover:bg-slate-100'
+                  : 'bg-slate-50 text-slate-900 border-slate-200/90 hover:bg-slate-100'
               }`}
             >
               <span
